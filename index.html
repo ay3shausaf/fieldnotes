@@ -556,23 +556,24 @@
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
   // Auto-show once per visitor, after intro finishes, unless already dismissed/subscribed
-  (async function maybeAutoOpen(){
-    try {
-      const seen = await window.storage.get('signup-prompt-seen', false).catch(() => null);
-      if (!seen) {
-        setTimeout(openModal, prefersReduced ? 1500 : 2800);
-      }
-    } catch (e) {
+  function maybeAutoOpen(){
+    const seen = localStorage.getItem('fn-signup-seen');
+    if (!seen) {
       setTimeout(openModal, prefersReduced ? 1500 : 2800);
     }
-  })();
+  }
+  maybeAutoOpen();
 
-  async function markPromptSeen(){
-    try { await window.storage.set('signup-prompt-seen', 'true', false); } catch(e) {}
+  function markPromptSeen(){
+    try { localStorage.setItem('fn-signup-seen', 'true'); } catch(e) {}
   }
   closeBtn.addEventListener('click', markPromptSeen);
 
-  // ---------- Signup submission (shared storage) ----------
+  // ---------- Signup submission (Google Form) ----------
+  // Responses land in the Google Sheet linked to this form.
+  const GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSfVGnuSwbTozCGv0Ayp-aT6ntEkBGOY2EWl5yhkr0ExDlQXBQ/formResponse';
+  const GOOGLE_FORM_EMAIL_ENTRY = 'entry.618110140';
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = emailInput.value.trim();
@@ -581,26 +582,25 @@
     submitBtn.textContent = 'Signing up…';
     statusMsg.textContent = '';
     statusMsg.className = 'status-msg';
+
+    const body = new FormData();
+    body.append(GOOGLE_FORM_EMAIL_ENTRY, email);
+
     try {
-      const key = 'subscriber:' + email.toLowerCase();
-      const existing = await window.storage.get(key, true).catch(() => null);
-      if (existing) {
-        statusMsg.textContent = "You're already on the list.";
-        statusMsg.classList.add('ok');
-      } else {
-        const result = await window.storage.set(key, JSON.stringify({ email, joinedAt: new Date().toISOString() }), true);
-        if (result) {
-          statusMsg.textContent = "You're in — first issue comes in September.";
-          statusMsg.classList.add('ok');
-          await markPromptSeen();
-          emailInput.value = '';
-          setTimeout(closeModal, 1600);
-        } else {
-          throw new Error('no result');
-        }
-      }
+      // Google Forms doesn't allow reading the response cross-origin (no-cors),
+      // so a successful network request (no thrown error) is treated as success.
+      await fetch(GOOGLE_FORM_ACTION, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: body
+      });
+      statusMsg.textContent = "You're in — first issue comes in September.";
+      statusMsg.classList.add('ok');
+      markPromptSeen();
+      emailInput.value = '';
+      setTimeout(closeModal, 1600);
     } catch (err) {
-      statusMsg.textContent = "Couldn't save that — try again in a moment.";
+      statusMsg.textContent = "Couldn't submit that — check your connection and try again.";
       statusMsg.classList.add('err');
     } finally {
       submitBtn.disabled = false;
