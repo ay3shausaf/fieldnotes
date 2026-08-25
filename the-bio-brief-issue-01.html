@@ -120,9 +120,9 @@
 
   /* ---------- QUICK HITS ---------- */
   .quick-hits{ grid-column:span 12; display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
-  .hit{ border:2px solid var(--ink); border-radius:12px; padding:16px; }
-  .hit .num{ font-family:var(--display); font-weight:700; font-size:22px; }
-  .hit p{ font-family:var(--body); font-size:12.5px; line-height:1.45; margin:8px 0 0; color:var(--ink-soft); }
+  .hit{ border:2px solid var(--ink); border-radius:12px; padding:16px; display:flex; flex-direction:column; }
+  .hit .hit-label{ font-family:var(--mono); font-weight:600; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px; }
+  .hit p{ font-family:var(--body); font-size:13.5px; font-weight:500; line-height:1.5; margin:0; color:var(--ink); }
   .hit:nth-child(1){ background:var(--gold-soft); }
   .hit:nth-child(2){ background:var(--emerald-soft); }
   .hit:nth-child(3){ background:var(--magenta-soft); }
@@ -187,8 +187,7 @@
   <div class="masthead">
     <h1 class="mast-title"><span>THE</span> <span>BIO</span> <span>BRIEF</span></h1>
     <div class="mast-meta">
-      <div><strong>Issue 01</strong> — Sample layout</div>
-      <div>Week of 4 September</div>
+      <div><strong>Issue No. 1</strong></div>
     </div>
   </div>
 
@@ -209,7 +208,7 @@
       <div class="photo-row">
         <div class="photo">
           <img src="images/dna.webp" alt="DNA double helix close-up">
-          <div class="caption">DNA double helix, close-up</div>
+          <div class="caption">DNA double helix</div>
         </div>
         <div class="photo">
           <img src="images/switch.jpeg" alt="A hand switching on a light switch">
@@ -247,11 +246,11 @@
 
     <!-- QUICK HITS -->
     <div class="quick-hits">
-      <div class="hit"><span class="num">3</span><p>Octopuses have three hearts — two pump blood to the gills, one to the rest of the body.</p></div>
-      <div class="hit"><span class="num">60<small style="font-size:12px;">%</small></span><p>Roughly how much of their genes humans share with bananas.</p></div>
-      <div class="hit"><span class="num">450<small style="font-size:12px;">M</small></span><p>Years sharks have existed — older than trees.</p></div>
-      <div class="hit"><span class="num">10<small style="font-size:12px;">yr</small></span><p>Roughly how often your entire skeleton fully rebuilds itself.</p></div>
-      <div class="hit"><span class="num">🐌</span><p>Some snails can seal themselves up and sleep for years at a time.</p></div>
+      <div class="hit"><span class="hit-label">Fact 01</span><p>Octopuses have three hearts — two pump blood to the gills, and one pumps it to the rest of the body.</p></div>
+      <div class="hit"><span class="hit-label">Fact 02</span><p>Humans share about 60% of their genes with bananas.</p></div>
+      <div class="hit"><span class="hit-label">Fact 03</span><p>Sharks are older than trees — they've existed for roughly 450 million years.</p></div>
+      <div class="hit"><span class="hit-label">Fact 04</span><p>It takes about 10 years for your entire skeleton to fully rebuild itself.</p></div>
+      <div class="hit"><span class="hit-label">Fact 05</span><p>Some snails can seal themselves inside their shell and sleep for years at a time.</p></div>
     </div>
 
     <!-- SPECIMEN -->
@@ -261,11 +260,11 @@
         <div class="photo-row-3">
           <div class="photo" style="min-height:170px;">
             <img src="images/axolotl-front.webp" alt="Axolotl facing the camera">
-            <div class="caption">Axolotl, front-facing</div>
+            <div class="caption">Axolotl</div>
           </div>
-          <div class="photo" style="min-height:170px;">
-            <img src="images/axolotl-swim.jpg" alt="Axolotl swimming">
-            <div class="caption">Axolotl, swimming</div>
+          <div class="photo" style="min-height:220px; background:#0c1c14;">
+            <img src="images/axolotl-swim.jpg" alt="Axolotl swimming" style="object-fit:contain; object-position:center;">
+            <div class="caption">Regenerating limb</div>
           </div>
         </div>
         <div>
