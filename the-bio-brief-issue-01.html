@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Bio Brief — Issue 01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f7f7f2;
+    --ink:#14161a;
+    --ink-soft:#4a4d54;
+    --line:#14161a;
+
+    --indigo:#5b4fe0;
+    --indigo-soft:#e7e4fb;
+    --coral:#f0455d;
+    --coral-soft:#fde3e6;
+    --gold:#ffb800;
+    --gold-soft:#fff2cf;
+    --emerald:#1faa59;
+    --emerald-soft:#dcf3e5;
+    --magenta:#d6336c;
+    --magenta-soft:#fbdeea;
+    --teal:#0891b2;
+    --teal-soft:#dcf1f5;
+
+    --display:'Space Grotesk', sans-serif;
+    --body:'Inter', sans-serif;
+    --mono:'IBM Plex Mono', monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ max-width:100%; overflow-x:hidden; }
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--body); -webkit-font-smoothing:antialiased;
+    -webkit-user-select:none; user-select:none;
+  }
+  .page{ max-width:1160px; margin:0 auto; padding:26px 26px 60px; }
+
+  /* ---------- MASTHEAD ---------- */
+  .masthead{
+    display:flex; align-items:flex-end; justify-content:space-between;
+    border-bottom:4px solid var(--ink); padding-bottom:16px; margin-bottom:6px;
+    flex-wrap:wrap; gap:14px;
+  }
+  .mast-title{
+    font-family:var(--display); font-weight:700; font-size:clamp(38px,6vw,64px);
+    letter-spacing:-0.02em; line-height:1; margin:0;
+  }
+  .mast-title span:nth-child(1){ color:var(--indigo); }
+  .mast-title span:nth-child(2){ color:var(--ink); }
+  .mast-title span:nth-child(3){ color:var(--coral); }
+  .mast-meta{
+    font-family:var(--mono); font-size:12px; color:var(--ink-soft);
+    text-align:right; line-height:1.6;
+  }
+  .mast-meta strong{ color:var(--ink); }
+  .mast-strip{
+    display:flex; gap:10px; flex-wrap:wrap; margin:14px 0 30px;
+  }
+  .mast-chip{
+    font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:0.04em;
+    padding:6px 12px; border-radius:100px; text-transform:uppercase;
+  }
+  .chip-indigo{ background:var(--indigo-soft); color:var(--indigo); }
+  .chip-coral{ background:var(--coral-soft); color:var(--coral); }
+  .chip-gold{ background:var(--gold-soft); color:#8a6300; }
+  .chip-emerald{ background:var(--emerald-soft); color:var(--emerald); }
+  .chip-magenta{ background:var(--magenta-soft); color:var(--magenta); }
+
+  /* ---------- GRID SYSTEM ---------- */
+  .grid{
+    display:grid; grid-template-columns:repeat(12,1fr); gap:16px; align-items:stretch;
+  }
+  .panel{
+    border:2.5px solid var(--ink); border-radius:14px; background:#fff;
+    padding:22px; position:relative; overflow:hidden;
+  }
+  .tag{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:0.06em;
+    text-transform:uppercase; padding:5px 10px; border-radius:100px; margin-bottom:14px;
+  }
+
+  /* photo placeholder block */
+  .photo{
+    border-radius:10px; border:2px solid var(--ink);
+    display:flex; align-items:flex-end; position:relative;
+    min-height:150px; overflow:hidden;
+  }
+  .photo .caption{
+    position:relative; z-index:1; font-family:var(--mono); font-size:10.5px;
+    color:#fff; padding:9px 11px; background:rgba(20,22,26,0.55); width:100%;
+  }
+  .photo-row{ display:grid; grid-template-columns:1.4fr 1fr; gap:12px; margin-bottom:18px; }
+  .photo-row-3{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px; }
+
+  /* ---------- LEAD STORY ---------- */
+  .lead{ grid-column:span 8; }
+  .lead h2{
+    font-family:var(--display); font-weight:700; font-size:clamp(26px,3vw,36px);
+    line-height:1.08; letter-spacing:-0.01em; margin:0 0 14px;
+  }
+  .lead p{ font-size:15px; line-height:1.65; color:var(--ink-soft); margin:0 0 14px; }
+  .lead p:last-child{ margin-bottom:0; }
+  .lead p strong{ color:var(--ink); }
+
+  /* ---------- MISSION ---------- */
+  .mission{ grid-column:span 4; background:var(--indigo); color:#fff; border-color:var(--indigo); display:flex; flex-direction:column; }
+  .mission h2{ font-family:var(--display); font-weight:700; font-size:21px; margin:0 0 12px; line-height:1.2; }
+  .mission p{ font-size:13.5px; line-height:1.6; color:#e4e1fb; margin:0 0 14px; }
+  .mission .photo{ border-color:#fff; margin-bottom:14px; }
+  .progress-label{ font-family:var(--mono); font-size:11px; display:flex; justify-content:space-between; margin-bottom:6px; color:#e4e1fb; }
+  .progress-track{ height:10px; background:rgba(255,255,255,0.25); border-radius:100px; overflow:hidden; margin-bottom:2px; }
+  .progress-fill{ height:100%; width:38%; background:var(--gold); border-radius:100px; }
+
+  /* ---------- QUICK HITS ---------- */
+  .quick-hits{ grid-column:span 12; display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+  .hit{ border:2px solid var(--ink); border-radius:12px; padding:16px; }
+  .hit .num{ font-family:var(--display); font-weight:700; font-size:22px; }
+  .hit p{ font-family:var(--body); font-size:12.5px; line-height:1.45; margin:8px 0 0; color:var(--ink-soft); }
+  .hit:nth-child(1){ background:var(--gold-soft); }
+  .hit:nth-child(2){ background:var(--emerald-soft); }
+  .hit:nth-child(3){ background:var(--magenta-soft); }
+  .hit:nth-child(4){ background:var(--teal-soft); }
+  .hit:nth-child(5){ background:var(--coral-soft); }
+
+  /* ---------- SPECIMEN ---------- */
+  .specimen{ grid-column:span 12; }
+  .specimen-inner{ display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:center; }
+  .specimen h2{ font-family:var(--display); font-weight:700; font-size:24px; margin:0 0 6px; }
+  .specimen .latin{ font-family:var(--mono); font-size:12px; color:var(--emerald); margin:0 0 12px; font-style:italic; }
+  .specimen p{ font-size:14.5px; line-height:1.65; color:var(--ink-soft); margin:0 0 10px; }
+
+  /* ---------- GAMES ---------- */
+  .game-row{ grid-column:span 12; display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .game h3{ font-family:var(--display); font-weight:700; font-size:18px; margin:0 0 4px; }
+  .game .sub{ font-family:var(--mono); font-size:11px; color:var(--ink-soft); margin:0 0 16px; }
+
+  /* word search */
+  .wordsearch{
+    display:grid; grid-template-columns:repeat(10,1fr); gap:4px; margin-bottom:16px;
+    max-width:420px;
+  }
+  .ws-cell{
+    font-family:var(--mono); font-weight:600; font-size:15px; text-align:center;
+    background:var(--paper); border-radius:5px; padding:9px 0; color:var(--ink-soft);
+    cursor:pointer; user-select:none; -webkit-user-select:none; touch-action:none;
+    border:1.5px solid transparent;
+  }
+  .ws-cell.temp{ background:var(--indigo-soft); color:var(--indigo); border-color:var(--indigo); }
+  .ws-cell.found{ background:var(--emerald); color:#fff; }
+  .ws-words{ display:flex; flex-wrap:wrap; gap:8px; }
+  .ws-word{
+    font-family:var(--mono); font-size:11.5px; font-weight:600; padding:5px 10px;
+    border-radius:100px; background:var(--paper); border:1.5px solid var(--ink); color:var(--ink);
+  }
+  .ws-word.done{ background:var(--emerald); color:#fff; border-color:var(--emerald); text-decoration:line-through; }
+  .ws-status{ font-family:var(--mono); font-size:11px; color:var(--ink-soft); margin-top:12px; }
+
+  /* quiz */
+  .quiz-box{ min-height:260px; display:flex; flex-direction:column; }
+  .quiz-progress{ font-family:var(--mono); font-size:11px; color:var(--ink-soft); margin-bottom:10px; }
+  .quiz-q{ font-size:16px; font-weight:600; margin:0 0 16px; line-height:1.4; }
+  .quiz-opt{
+    font-family:var(--body); font-size:13.5px; border:1.5px solid var(--ink); border-radius:10px;
+    padding:12px 14px; margin-bottom:10px; cursor:pointer; background:#fff; text-align:left;
+    width:100%; transition:background 0.15s ease;
+  }
+  .quiz-opt:hover:not(:disabled){ background:var(--paper); }
+  .quiz-opt.correct{ background:var(--emerald-soft); border-color:var(--emerald); }
+  .quiz-opt.wrong{ background:var(--coral-soft); border-color:var(--coral); }
+  .quiz-opt:disabled{ cursor:default; opacity:0.85; }
+  .quiz-next{
+    font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:0.04em;
+    text-transform:uppercase; background:var(--ink); color:#fff; border:none;
+    padding:10px 18px; border-radius:100px; cursor:pointer; margin-top:auto; align-self:flex-start;
+  }
+  .quiz-score{ text-align:center; margin:auto; }
+  .quiz-score .big{ font-family:var(--display); font-weight:700; font-size:40px; color:var(--indigo); }
+  .quiz-score p{ font-size:13px; color:var(--ink-soft); margin:6px 0 16px; }
+
+  /* ---------- NEXT EDITION ---------- */
+  .next-row{ grid-column:span 12; display:flex; justify-content:flex-end; margin-top:4px; }
+  .next{
+    border:2.5px dashed var(--ink); border-radius:12px; padding:14px 18px;
+    display:flex; align-items:center; gap:12px; max-width:380px; background:var(--gold-soft);
+  }
+  .next .arrow{ font-family:var(--display); font-weight:700; font-size:20px; }
+  .next .txt{ font-size:12.5px; line-height:1.4; }
+  .next .txt strong{ display:block; font-family:var(--display); font-size:14px; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .lead{ grid-column:span 12; }
+    .mission{ grid-column:span 12; }
+    .quick-hits{ grid-template-columns:repeat(2,1fr); }
+    .specimen-inner{ grid-template-columns:1fr; }
+    .game-row{ grid-template-columns:1fr; }
+    .photo-row{ grid-template-columns:1fr; }
+  }
+  @media (max-width:560px){
+    .page{ padding:20px 18px 50px; }
+    .quick-hits{ grid-template-columns:1fr 1fr; }
+    .next-row{ justify-content:center; }
+    .mast-meta{ text-align:left; }
+    .wordsearch{ max-width:100%; }
+    .ws-cell{ font-size:12px; padding:7px 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="masthead">
+    <h1 class="mast-title"><span>THE</span> <span>BIO</span> <span>BRIEF</span></h1>
+    <div class="mast-meta">
+      <div><strong>Issue 01</strong> — Sample layout</div>
+      <div>Week of 4 September</div>
+    </div>
+  </div>
+
+  <div class="mast-strip">
+    <span class="mast-chip chip-indigo">Discovery</span>
+    <span class="mast-chip chip-coral">Mission</span>
+    <span class="mast-chip chip-gold">Quick Hits</span>
+    <span class="mast-chip chip-emerald">Specimen</span>
+    <span class="mast-chip chip-magenta">Games</span>
+  </div>
+
+  <div class="grid">
+
+    <!-- LEAD STORY -->
+    <div class="panel lead">
+      <span class="tag chip-indigo">Discovery of the Week</span>
+
+      <div class="photo-row">
+        <div class="photo" style="background:linear-gradient(135deg, var(--indigo), #8b7ff0);">
+          <div class="caption">Photo: octopus mid color-change, full body</div>
+        </div>
+        <div class="photo" style="background:linear-gradient(135deg, #8b7ff0, var(--magenta));">
+          <div class="caption">Photo: close-up of skin, chromatophores visible</div>
+        </div>
+      </div>
+
+      <h2>How an octopus "talks" without ever saying a word</h2>
+      <p>Octopuses can shift their entire skin color, texture, and pattern in under a second — and for a long time, biologists assumed this was purely about hiding from predators. New research is building a stronger case that a lot of this color-shifting is actually <strong>communication</strong>: signals aimed at other octopuses, not camouflage aimed at a predator's eyes at all.</p>
+      <p>The color changes come from three layered structures in the skin. <strong>Chromatophores</strong> are tiny sacs of pigment surrounded by muscle — when the muscle contracts, the sac stretches and the color becomes visible; when it relaxes, the color shrinks out of sight. Underneath those sit <strong>iridophores</strong>, which reflect light to create shimmering blues and greens, and <strong>leucophores</strong>, which scatter light to produce white. Together, the three layers work like a screen with millions of individually controlled pixels, all wired directly to the nervous system.</p>
+      <p>What convinced researchers this was social signaling rather than just camouflage was timing and context: octopuses were observed flashing specific patterns during encounters with other octopuses — before mating, before conflict, or while retreating — patterns that made no sense as camouflage since there was no predator around, and no matching background to blend into.</p>
+      <p>Researchers are now filming these interactions frame-by-frame and cataloguing which patterns show up in which situations, essentially trying to build the first rough "dictionary" of a language made entirely of color, texture, and posture — no sound involved at all.</p>
+    </div>
+
+    <!-- MISSION -->
+    <div class="panel mission">
+      <span class="tag" style="background:rgba(255,255,255,0.18); color:#fff;">The Mission</span>
+      <div class="photo" style="background:linear-gradient(135deg, #3a2f8f, var(--indigo));">
+        <div class="caption">Diagram: single-cell sequencing workflow</div>
+      </div>
+      <h2>Mapping every cell type in the human body</h2>
+      <p>The human body is built from roughly 37 trillion cells, and for most of medical history, biologists have only had rough categories to describe them — "muscle cell," "skin cell," "immune cell" — without knowing how many distinct sub-types actually exist inside each category.</p>
+      <p>The <strong>Human Cell Atlas</strong> is an international collaboration trying to change that: using a technique called single-cell sequencing, researchers can now read the active genes inside one individual cell at a time, across millions of cells, and use that data to sort them into precise, distinct types rather than broad guesses.</p>
+      <p>The payoff is direct: many diseases, including cancers and autoimmune conditions, are now understood to involve very specific cell sub-types misbehaving — so a complete map makes it possible to design treatments that target exactly the right cells instead of broadly affecting healthy ones too.</p>
+      <div class="progress-label"><span>Cell types catalogued</span><span>~38%</span></div>
+      <div class="progress-track"><div class="progress-fill"></div></div>
+    </div>
+
+    <!-- QUICK HITS -->
+    <div class="quick-hits">
+      <div class="hit"><span class="num">3</span><p>Octopuses have three hearts — two pump blood to the gills, one to the rest of the body.</p></div>
+      <div class="hit"><span class="num">🍌</span><p>Bananas are botanically berries. Strawberries, botanically, are not.</p></div>
+      <div class="hit"><span class="num">450<small style="font-size:12px;">M</small></span><p>Years sharks have existed — longer than trees have.</p></div>
+      <div class="hit"><span class="num">10<small style="font-size:12px;">yr</small></span><p>Roughly how often your entire skeleton fully rebuilds itself.</p></div>
+      <div class="hit"><span class="num">🦩</span><p>A group of flamingos is called a "flamboyance."</p></div>
+    </div>
+
+    <!-- SPECIMEN -->
+    <div class="panel specimen">
+      <span class="tag chip-emerald">Specimen of the Week</span>
+      <div class="specimen-inner">
+        <div class="photo-row-3">
+          <div class="photo" style="background:linear-gradient(135deg, var(--emerald), #7fe0ab); min-height:170px;">
+            <div class="caption">Photo: axolotl, front-facing</div>
+          </div>
+          <div class="photo" style="background:linear-gradient(135deg, #7fe0ab, var(--teal)); min-height:170px;">
+            <div class="caption">Photo: regenerating limb, close-up</div>
+          </div>
+        </div>
+        <div>
+          <h2>Axolotl</h2>
+          <p class="latin">Ambystoma mexicanum</p>
+          <p>A salamander that never grows up — it keeps its juvenile gills and stays aquatic for its entire life instead of developing lungs like most amphibians, a trait called neoteny.</p>
+          <p>Its most famous ability is regeneration: an axolotl can regrow an entire lost limb, complete with bone, muscle, and nerves, over the course of a few weeks — and can also regenerate parts of its heart, spinal cord, and even brain tissue with minimal scarring.</p>
+          <p>It's critically endangered in the wild, surviving naturally only in the canal system of Lake Xochimilco near Mexico City, even though it's one of the most widely studied animals in regeneration research worldwide.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GAMES -->
+    <div class="game-row">
+      <div class="panel game">
+        <span class="tag chip-magenta">Game 1</span>
+        <h3>Word Search</h3>
+        <p class="sub">Click and drag across letters to select a word.</p>
+        <div class="wordsearch" id="wordsearch"></div>
+        <div class="ws-words" id="wsWords"></div>
+        <div class="ws-status" id="wsStatus">0 of 5 words found</div>
+      </div>
+
+      <div class="panel game">
+        <span class="tag chip-magenta">Game 2</span>
+        <h3>Quick Quiz</h3>
+        <p class="sub">Tap an answer to see if you're right.</p>
+        <div class="quiz-box" id="quizBox"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="next-row">
+    <div class="next">
+      <span class="arrow">→</span>
+      <div class="txt"><strong>Next edition</strong>Inside the fight to save coral reefs</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // ============ WORD SEARCH ============
+  const WS_SIZE = 10;
+  const WS_WORDS = [
+    { word:'OCTOPUS', cells:[[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6]] },
+    { word:'AXOLOTL', cells:[[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[3,7]] },
+    { word:'CELL',    cells:[[0,9],[1,9],[2,9],[3,9]] },
+    { word:'GENE',    cells:[[6,0],[6,1],[6,2],[6,3]] },
+    { word:'ATLAS',   cells:[[8,2],[8,3],[8,4],[8,5],[8,6]] }
+  ];
+
+  const wsGrid = Array.from({length:WS_SIZE}, () => Array(WS_SIZE).fill(''));
+  WS_WORDS.forEach(w => {
+    w.word.split('').forEach((ch,i) => {
+      const [r,c] = w.cells[i];
+      wsGrid[r][c] = ch;
+    });
+  });
+  const FILL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  for (let r=0;r<WS_SIZE;r++){
+    for (let c=0;c<WS_SIZE;c++){
+      if (!wsGrid[r][c]) wsGrid[r][c] = FILL[Math.floor(Math.random()*FILL.length)];
+    }
+  }
+
+  const wsContainer = document.getElementById('wordsearch');
+  const cellEls = {};
+  for (let r=0;r<WS_SIZE;r++){
+    for (let c=0;c<WS_SIZE;c++){
+      const el = document.createElement('div');
+      el.className = 'ws-cell';
+      el.textContent = wsGrid[r][c];
+      el.dataset.r = r; el.dataset.c = c;
+      wsContainer.appendChild(el);
+      cellEls[r+','+c] = el;
+    }
+  }
+
+  const wsWordsEl = document.getElementById('wsWords');
+  const wordChipEls = {};
+  WS_WORDS.forEach(w => {
+    const chip = document.createElement('span');
+    chip.className = 'ws-word';
+    chip.textContent = w.word;
+    wsWordsEl.appendChild(chip);
+    wordChipEls[w.word] = chip;
+  });
+
+  let foundCount = 0;
+  const wsStatus = document.getElementById('wsStatus');
+
+  let selecting = false;
+  let startCell = null;
+  let tempPath = [];
+
+  function cellKey(r,c){ return r+','+c; }
+  function clearTemp(){
+    tempPath.forEach(k => cellEls[k] && cellEls[k].classList.remove('temp'));
+    tempPath = [];
+  }
+  function pathBetween(r1,c1,r2,c2){
+    const path = [];
+    if (r1===r2){
+      const step = c2>=c1?1:-1;
+      for (let c=c1;c!==c2+step;c+=step) path.push([r1,c]);
+    } else if (c1===c2){
+      const step = r2>=r1?1:-1;
+      for (let r=r1;r!==r2+step;r+=step) path.push([r,c1]);
+    } else {
+      return null; // only straight lines supported
+    }
+    return path;
+  }
+  function pathMatchesWord(path){
+    const pathKeys = path.map(([r,c]) => cellKey(r,c)).sort();
+    for (const w of WS_WORDS){
+      if (wordChipEls[w.word].classList.contains('done')) continue;
+      const wordKeys = w.cells.map(([r,c]) => cellKey(r,c)).sort();
+      if (pathKeys.length === wordKeys.length && pathKeys.every((k,i)=>k===wordKeys[i])){
+        return w.word;
+      }
+    }
+    return null;
+  }
+
+  function cellFromEvent(e){
+    let target = e.target;
+    if (e.touches && e.touches.length){
+      target = document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY);
+    }
+    if (!target || !target.classList || !target.classList.contains('ws-cell')) return null;
+    return target;
+  }
+
+  function beginSelect(el){
+    if (!el) return;
+    selecting = true;
+    startCell = { r:+el.dataset.r, c:+el.dataset.c };
+    clearTemp();
+    el.classList.add('temp');
+    tempPath = [cellKey(startCell.r, startCell.c)];
+  }
+  function updateSelect(el){
+    if (!selecting || !el) return;
+    const r = +el.dataset.r, c = +el.dataset.c;
+    const path = pathBetween(startCell.r, startCell.c, r, c);
+    clearTemp();
+    if (!path) return;
+    path.forEach(([pr,pc]) => { cellEls[cellKey(pr,pc)].classList.add('temp'); });
+    tempPath = path.map(([pr,pc]) => cellKey(pr,pc));
+  }
+  function endSelect(){
+    if (!selecting) return;
+    selecting = false;
+    const path = tempPath.map(k => k.split(',').map(Number));
+    const match = pathMatchesWord(path);
+    if (match){
+      path.forEach(([pr,pc]) => {
+        cellEls[cellKey(pr,pc)].classList.remove('temp');
+        cellEls[cellKey(pr,pc)].classList.add('found');
+      });
+      wordChipEls[match].classList.add('done');
+      foundCount++;
+      wsStatus.textContent = foundCount === WS_WORDS.length
+        ? "All 5 words found! 🎉"
+        : foundCount + ' of ' + WS_WORDS.length + ' words found';
+    } else {
+      clearTemp();
+    }
+    tempPath = [];
+  }
+
+  wsContainer.addEventListener('mousedown', e => beginSelect(cellFromEvent(e)));
+  wsContainer.addEventListener('mouseover', e => updateSelect(cellFromEvent(e)));
+  document.addEventListener('mouseup', endSelect);
+
+  wsContainer.addEventListener('touchstart', e => { beginSelect(cellFromEvent(e)); e.preventDefault(); }, {passive:false});
+  wsContainer.addEventListener('touchmove', e => { updateSelect(cellFromEvent(e)); e.preventDefault(); }, {passive:false});
+  wsContainer.addEventListener('touchend', endSelect);
+
+  // ============ QUIZ ============
+  const QUIZ = [
+    {
+      q: "Which lake system is the axolotl's only wild habitat?",
+      options: ["Lake Baikal", "Lake Xochimilco", "Lake Titicaca", "Lake Malawi"],
+      correct: 1
+    },
+    {
+      q: "What technique lets scientists sort cells into precise types for the Human Cell Atlas?",
+      options: ["MRI scanning", "X-ray crystallography", "Single-cell sequencing", "PCR alone"],
+      correct: 2
+    },
+    {
+      q: "How many hearts does an octopus have?",
+      options: ["1", "2", "3", "4"],
+      correct: 2
+    },
+    {
+      q: "What structures let an octopus change color almost instantly?",
+      options: ["Chromatophores", "Chloroplasts", "Melanocytes only", "Scales"],
+      correct: 0
+    }
+  ];
+
+  let qIndex = 0, score = 0;
+  const quizBox = document.getElementById('quizBox');
+
+  function renderQuestion(){
+    const item = QUIZ[qIndex];
+    quizBox.innerHTML = '';
+
+    const progress = document.createElement('div');
+    progress.className = 'quiz-progress';
+    progress.textContent = 'Question ' + (qIndex+1) + ' of ' + QUIZ.length;
+    quizBox.appendChild(progress);
+
+    const q = document.createElement('p');
+    q.className = 'quiz-q';
+    q.textContent = item.q;
+    quizBox.appendChild(q);
+
+    const optsWrap = document.createElement('div');
+    item.options.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-opt';
+      btn.textContent = opt;
+      btn.addEventListener('click', () => {
+        const buttons = optsWrap.querySelectorAll('.quiz-opt');
+        buttons.forEach(b => b.disabled = true);
+        if (i === item.correct){
+          btn.classList.add('correct');
+          score++;
+        } else {
+          btn.classList.add('wrong');
+          buttons[item.correct].classList.add('correct');
+        }
+        showNext();
+      });
+      optsWrap.appendChild(btn);
+    });
+    quizBox.appendChild(optsWrap);
+  }
+
+  function showNext(){
+    const btn = document.createElement('button');
+    btn.className = 'quiz-next';
+    btn.textContent = qIndex === QUIZ.length - 1 ? 'See score' : 'Next question';
+    btn.addEventListener('click', () => {
+      qIndex++;
+      if (qIndex < QUIZ.length) renderQuestion();
+      else renderScore();
+    });
+    quizBox.appendChild(btn);
+  }
+
+  function renderScore(){
+    quizBox.innerHTML = '';
+    const wrap = document.createElement('div');
+    wrap.className = 'quiz-score';
+    wrap.innerHTML =
+      '<div class="big">' + score + ' / ' + QUIZ.length + '</div>' +
+      '<p>' + (score === QUIZ.length ? "Perfect score." : "Nice work — read the issue again for the ones you missed.") + '</p>';
+    const retry = document.createElement('button');
+    retry.className = 'quiz-next';
+    retry.style.alignSelf = 'center';
+    retry.textContent = 'Play again';
+    retry.addEventListener('click', () => { qIndex = 0; score = 0; renderQuestion(); });
+    wrap.appendChild(retry);
+    quizBox.appendChild(wrap);
+  }
+
+  renderQuestion();
+</script>
+</body>
+</html>

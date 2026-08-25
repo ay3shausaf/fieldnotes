@@ -245,6 +245,9 @@
   }
   .slot .slot-num{ font-size:11px; letter-spacing:0.08em; }
   .slot .slot-status{ font-size:10px; letter-spacing:0.06em; text-transform:uppercase; opacity:0.7; }
+  a.slot{ border-style:solid; border-color:var(--cyan); background:var(--cyan); color:var(--paper); transition:background 0.2s ease; }
+  a.slot .slot-status{ opacity:1; }
+  a.slot:hover{ background:var(--cyan-bright); }
   .empty-note{
     margin-top:34px; padding:22px 24px; background:var(--cyan); color:var(--paper);
     display:flex; align-items:center; gap:14px; flex-wrap:wrap; justify-content:space-between;
@@ -554,9 +557,15 @@
   // ---------- Archive placeholder slots ----------
   const drawerGrid = document.getElementById('drawerGrid');
   for (let i = 1; i <= 8; i++){
-    const slot = document.createElement('div');
+    const isReady = i === 1;
+    const slot = document.createElement(isReady ? 'a' : 'div');
     slot.className = 'slot';
-    slot.innerHTML = `<span class="slot-num">Issue No. ${String(i).padStart(2,'0')}</span><span class="slot-status">${i === 1 ? 'Coming September' : 'Not yet collected'}</span>`;
+    if (isReady){
+      slot.href = 'the-bio-brief-issue-01.html';
+      slot.style.textDecoration = 'none';
+      slot.style.cursor = 'pointer';
+    }
+    slot.innerHTML = `<span class="slot-num">Issue No. ${String(i).padStart(2,'0')}</span><span class="slot-status">${isReady ? 'Read now →' : 'Not yet collected'}</span>`;
     drawerGrid.appendChild(slot);
   }
 
