@@ -12,7 +12,6 @@
     --paper:#f7f7f2;
     --ink:#14161a;
     --ink-soft:#4a4d54;
-    --line:#14161a;
 
     --indigo:#5b4fe0;
     --indigo-soft:#e7e4fb;
@@ -90,7 +89,10 @@
   .photo{
     border-radius:10px; border:2px solid var(--ink);
     display:flex; align-items:flex-end; position:relative;
-    min-height:150px; overflow:hidden;
+    min-height:150px; overflow:hidden; background:var(--paper);
+  }
+  .photo img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;
   }
   .photo .caption{
     position:relative; z-index:1; font-family:var(--mono); font-size:10.5px;
@@ -114,9 +116,7 @@
   .mission h2{ font-family:var(--display); font-weight:700; font-size:21px; margin:0 0 12px; line-height:1.2; }
   .mission p{ font-size:13.5px; line-height:1.6; color:#e4e1fb; margin:0 0 14px; }
   .mission .photo{ border-color:#fff; margin-bottom:14px; }
-  .progress-label{ font-family:var(--mono); font-size:11px; display:flex; justify-content:space-between; margin-bottom:6px; color:#e4e1fb; }
-  .progress-track{ height:10px; background:rgba(255,255,255,0.25); border-radius:100px; overflow:hidden; margin-bottom:2px; }
-  .progress-fill{ height:100%; width:38%; background:var(--gold); border-radius:100px; }
+  .mission .photo-row-3{ margin-bottom:14px; }
 
   /* ---------- QUICK HITS ---------- */
   .quick-hits{ grid-column:span 12; display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
@@ -136,63 +136,31 @@
   .specimen .latin{ font-family:var(--mono); font-size:12px; color:var(--emerald); margin:0 0 12px; font-style:italic; }
   .specimen p{ font-size:14.5px; line-height:1.65; color:var(--ink-soft); margin:0 0 10px; }
 
-  /* ---------- GAMES ---------- */
-  .game-row{ grid-column:span 12; display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-  .game h3{ font-family:var(--display); font-weight:700; font-size:18px; margin:0 0 4px; }
-  .game .sub{ font-family:var(--mono); font-size:11px; color:var(--ink-soft); margin:0 0 16px; }
+  /* ---------- GAME (word search only) ---------- */
+  .game-row{ grid-column:span 12; }
+  .game h3{ font-family:var(--display); font-weight:700; font-size:20px; margin:0 0 4px; }
+  .game .sub{ font-family:var(--mono); font-size:11.5px; color:var(--ink-soft); margin:0 0 18px; }
 
-  /* word search */
+  .ws-layout{ display:grid; grid-template-columns:1fr 260px; gap:26px; align-items:start; }
   .wordsearch{
-    display:grid; grid-template-columns:repeat(10,1fr); gap:4px; margin-bottom:16px;
-    max-width:420px;
+    display:grid; grid-template-columns:repeat(14,1fr); gap:4px; width:100%;
   }
   .ws-cell{
     font-family:var(--mono); font-weight:600; font-size:15px; text-align:center;
-    background:var(--paper); border-radius:5px; padding:9px 0; color:var(--ink-soft);
+    background:var(--paper); border-radius:5px; padding:10px 0; color:var(--ink-soft);
     cursor:pointer; user-select:none; -webkit-user-select:none; touch-action:none;
     border:1.5px solid transparent;
   }
   .ws-cell.temp{ background:var(--indigo-soft); color:var(--indigo); border-color:var(--indigo); }
   .ws-cell.found{ background:var(--emerald); color:#fff; }
-  .ws-words{ display:flex; flex-wrap:wrap; gap:8px; }
+  .ws-words{ display:flex; flex-direction:column; gap:10px; }
   .ws-word{
-    font-family:var(--mono); font-size:11.5px; font-weight:600; padding:5px 10px;
+    font-family:var(--mono); font-size:13px; font-weight:600; padding:9px 14px;
     border-radius:100px; background:var(--paper); border:1.5px solid var(--ink); color:var(--ink);
+    text-align:center;
   }
   .ws-word.done{ background:var(--emerald); color:#fff; border-color:var(--emerald); text-decoration:line-through; }
-  .ws-status{ font-family:var(--mono); font-size:11px; color:var(--ink-soft); margin-top:12px; }
-
-  /* quiz */
-  .quiz-box{ min-height:260px; display:flex; flex-direction:column; }
-  .quiz-progress{ font-family:var(--mono); font-size:11px; color:var(--ink-soft); margin-bottom:10px; }
-  .quiz-q{ font-size:16px; font-weight:600; margin:0 0 16px; line-height:1.4; }
-  .quiz-opt{
-    font-family:var(--body); font-size:13.5px; border:1.5px solid var(--ink); border-radius:10px;
-    padding:12px 14px; margin-bottom:10px; cursor:pointer; background:#fff; text-align:left;
-    width:100%; transition:background 0.15s ease;
-  }
-  .quiz-opt:hover:not(:disabled){ background:var(--paper); }
-  .quiz-opt.correct{ background:var(--emerald-soft); border-color:var(--emerald); }
-  .quiz-opt.wrong{ background:var(--coral-soft); border-color:var(--coral); }
-  .quiz-opt:disabled{ cursor:default; opacity:0.85; }
-  .quiz-next{
-    font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:0.04em;
-    text-transform:uppercase; background:var(--ink); color:#fff; border:none;
-    padding:10px 18px; border-radius:100px; cursor:pointer; margin-top:auto; align-self:flex-start;
-  }
-  .quiz-score{ text-align:center; margin:auto; }
-  .quiz-score .big{ font-family:var(--display); font-weight:700; font-size:40px; color:var(--indigo); }
-  .quiz-score p{ font-size:13px; color:var(--ink-soft); margin:6px 0 16px; }
-
-  /* ---------- NEXT EDITION ---------- */
-  .next-row{ grid-column:span 12; display:flex; justify-content:flex-end; margin-top:4px; }
-  .next{
-    border:2.5px dashed var(--ink); border-radius:12px; padding:14px 18px;
-    display:flex; align-items:center; gap:12px; max-width:380px; background:var(--gold-soft);
-  }
-  .next .arrow{ font-family:var(--display); font-weight:700; font-size:20px; }
-  .next .txt{ font-size:12.5px; line-height:1.4; }
-  .next .txt strong{ display:block; font-family:var(--display); font-size:14px; }
+  .ws-status{ font-family:var(--mono); font-size:12px; color:var(--ink-soft); margin-top:16px; text-align:center; }
 
   /* ---------- RESPONSIVE ---------- */
   @media (max-width:900px){
@@ -200,16 +168,16 @@
     .mission{ grid-column:span 12; }
     .quick-hits{ grid-template-columns:repeat(2,1fr); }
     .specimen-inner{ grid-template-columns:1fr; }
-    .game-row{ grid-template-columns:1fr; }
     .photo-row{ grid-template-columns:1fr; }
+    .ws-layout{ grid-template-columns:1fr; }
+    .ws-words{ flex-direction:row; flex-wrap:wrap; }
+    .ws-word{ flex:1 1 auto; }
   }
   @media (max-width:560px){
     .page{ padding:20px 18px 50px; }
     .quick-hits{ grid-template-columns:1fr 1fr; }
-    .next-row{ justify-content:center; }
     .mast-meta{ text-align:left; }
-    .wordsearch{ max-width:100%; }
-    .ws-cell{ font-size:12px; padding:7px 0; }
+    .ws-cell{ font-size:10px; padding:6px 0; }
   }
 </style>
 </head>
@@ -229,52 +197,61 @@
     <span class="mast-chip chip-coral">Mission</span>
     <span class="mast-chip chip-gold">Quick Hits</span>
     <span class="mast-chip chip-emerald">Specimen</span>
-    <span class="mast-chip chip-magenta">Games</span>
+    <span class="mast-chip chip-magenta">Game</span>
   </div>
 
   <div class="grid">
 
-    <!-- LEAD STORY -->
+    <!-- LEAD STORY: THE ON SWITCH -->
     <div class="panel lead">
       <span class="tag chip-indigo">Discovery of the Week</span>
 
       <div class="photo-row">
-        <div class="photo" style="background:linear-gradient(135deg, var(--indigo), #8b7ff0);">
-          <div class="caption">Photo: octopus mid color-change, full body</div>
+        <div class="photo">
+          <img src="images/dna.webp" alt="DNA double helix close-up">
+          <div class="caption">DNA double helix, close-up</div>
         </div>
-        <div class="photo" style="background:linear-gradient(135deg, #8b7ff0, var(--magenta));">
-          <div class="caption">Photo: close-up of skin, chromatophores visible</div>
+        <div class="photo">
+          <img src="images/switch.jpeg" alt="A hand switching on a light switch">
+          <div class="caption">The "on switch"</div>
         </div>
       </div>
 
-      <h2>How an octopus "talks" without ever saying a word</h2>
-      <p>Octopuses can shift their entire skin color, texture, and pattern in under a second — and for a long time, biologists assumed this was purely about hiding from predators. New research is building a stronger case that a lot of this color-shifting is actually <strong>communication</strong>: signals aimed at other octopuses, not camouflage aimed at a predator's eyes at all.</p>
-      <p>The color changes come from three layered structures in the skin. <strong>Chromatophores</strong> are tiny sacs of pigment surrounded by muscle — when the muscle contracts, the sac stretches and the color becomes visible; when it relaxes, the color shrinks out of sight. Underneath those sit <strong>iridophores</strong>, which reflect light to create shimmering blues and greens, and <strong>leucophores</strong>, which scatter light to produce white. Together, the three layers work like a screen with millions of individually controlled pixels, all wired directly to the nervous system.</p>
-      <p>What convinced researchers this was social signaling rather than just camouflage was timing and context: octopuses were observed flashing specific patterns during encounters with other octopuses — before mating, before conflict, or while retreating — patterns that made no sense as camouflage since there was no predator around, and no matching background to blend into.</p>
-      <p>Researchers are now filming these interactions frame-by-frame and cataloguing which patterns show up in which situations, essentially trying to build the first rough "dictionary" of a language made entirely of color, texture, and posture — no sound involved at all.</p>
+      <h2>Scientists just decoded a hidden "on switch" buried in your DNA</h2>
+      <p>Every gene in your body needs to be "read" before it can do anything — a process called <strong>transcription</strong>, where the cell copies a gene's instructions so they can be built into a protein. But genes don't just start being read from a random point on the DNA strand. There's a specific, precise spot that marks exactly where reading should begin, called the <strong>initiator</strong>. Scientists have known this element existed for decades — they just couldn't crack what its exact DNA code looked like.</p>
+      <p>A team at the University of California San Diego, led by Professor James Kadonaga and graduate researcher Torrey Rhyne-Carrigg, took a brute-force approach to finally solve it. Instead of guessing at the pattern, they used high-throughput DNA sequencing to test roughly <strong>500,000 different versions</strong> of the initiator sequence, measuring how active each one was at switching a gene on. They then fed all of that data into a machine-learning model and trained it to recognise exactly what makes an initiator sequence work.</p>
+      <p>Once the AI had learned the hidden pattern, the team set it loose on the human genome — and found the initiator sequence sitting in roughly <strong>60% of all human genes</strong>. That's a huge chunk of our genetic code that scientists can now recognise and predict, where before it was essentially invisible.</p>
+      <p>Why it matters: a lot of diseases are caused by mutations that land not in a gene itself, but in the regulatory "switch" that controls it — meaning the gene's instructions are perfectly fine, but it never gets properly turned on. With the initiator's code finally decoded, researchers can start predicting exactly what a mutation in that tiny switch region will do to a gene's activity, which could help explain — and eventually treat — a wide range of genetic disorders and cancers.</p>
     </div>
 
-    <!-- MISSION -->
+    <!-- MISSION: WOOLLY MAMMOTH -->
     <div class="panel mission">
       <span class="tag" style="background:rgba(255,255,255,0.18); color:#fff;">The Mission</span>
-      <div class="photo" style="background:linear-gradient(135deg, #3a2f8f, var(--indigo));">
-        <div class="caption">Diagram: single-cell sequencing workflow</div>
+
+      <div class="photo-row-3">
+        <div class="photo" style="min-height:120px;">
+          <img src="images/elephant.jpg" alt="Asian elephant in a forest clearing">
+          <div class="caption">Asian elephant</div>
+        </div>
+        <div class="photo" style="min-height:120px;">
+          <img src="images/mammoth.jpg" alt="Woolly mammoths walking through a snowy valley">
+          <div class="caption">Woolly mammoth</div>
+        </div>
       </div>
-      <h2>Mapping every cell type in the human body</h2>
-      <p>The human body is built from roughly 37 trillion cells, and for most of medical history, biologists have only had rough categories to describe them — "muscle cell," "skin cell," "immune cell" — without knowing how many distinct sub-types actually exist inside each category.</p>
-      <p>The <strong>Human Cell Atlas</strong> is an international collaboration trying to change that: using a technique called single-cell sequencing, researchers can now read the active genes inside one individual cell at a time, across millions of cells, and use that data to sort them into precise, distinct types rather than broad guesses.</p>
-      <p>The payoff is direct: many diseases, including cancers and autoimmune conditions, are now understood to involve very specific cell sub-types misbehaving — so a complete map makes it possible to design treatments that target exactly the right cells instead of broadly affecting healthy ones too.</p>
-      <div class="progress-label"><span>Cell types catalogued</span><span>~38%</span></div>
-      <div class="progress-track"><div class="progress-fill"></div></div>
+
+      <h2>Bringing the woolly mammoth back from extinction</h2>
+      <p>A Dallas biotech company called <strong>Colossal Biosciences</strong> is trying to recreate a functional woolly mammoth — extinct for roughly 4,000 years — by comparing its full genome against its closest living relative, the Asian elephant, and using CRISPR gene-editing to insert mammoth traits like shaggy cold-resistant fur, extra fat layers, and cold-adapted blood into elephant cells.</p>
+      <p>The plan is to implant an edited embryo into an elephant surrogate, which would carry it through a 22-month pregnancy. As proof of concept, the team already created "woolly mice" — ordinary lab mice carrying spliced-in mammoth fur genes — specifically to test whether those genes actually produce cold tolerance before attempting anything in an elephant.</p>
+      <p>The original target was a mammoth calf by 2028. That's now slipped to "early 2030s." There's also real scientific debate about what the end result even is: Colossal's own chief scientist has admitted a mammoth calf would technically be a heavily gene-edited elephant carrying mammoth traits, not a literal resurrected mammoth. The ecological case, though, is bigger than nostalgia — reintroducing mammoth-like grazers to the Arctic is meant to help trample snow, keep permafrost frozen, and slow the release of greenhouse gases as tundra thaws.</p>
     </div>
 
     <!-- QUICK HITS -->
     <div class="quick-hits">
       <div class="hit"><span class="num">3</span><p>Octopuses have three hearts — two pump blood to the gills, one to the rest of the body.</p></div>
-      <div class="hit"><span class="num">🍌</span><p>Bananas are botanically berries. Strawberries, botanically, are not.</p></div>
-      <div class="hit"><span class="num">450<small style="font-size:12px;">M</small></span><p>Years sharks have existed — longer than trees have.</p></div>
+      <div class="hit"><span class="num">60<small style="font-size:12px;">%</small></span><p>Roughly how much of their genes humans share with bananas.</p></div>
+      <div class="hit"><span class="num">450<small style="font-size:12px;">M</small></span><p>Years sharks have existed — older than trees.</p></div>
       <div class="hit"><span class="num">10<small style="font-size:12px;">yr</small></span><p>Roughly how often your entire skeleton fully rebuilds itself.</p></div>
-      <div class="hit"><span class="num">🦩</span><p>A group of flamingos is called a "flamboyance."</p></div>
+      <div class="hit"><span class="num">🐌</span><p>Some snails can seal themselves up and sleep for years at a time.</p></div>
     </div>
 
     <!-- SPECIMEN -->
@@ -282,11 +259,13 @@
       <span class="tag chip-emerald">Specimen of the Week</span>
       <div class="specimen-inner">
         <div class="photo-row-3">
-          <div class="photo" style="background:linear-gradient(135deg, var(--emerald), #7fe0ab); min-height:170px;">
-            <div class="caption">Photo: axolotl, front-facing</div>
+          <div class="photo" style="min-height:170px;">
+            <img src="images/axolotl-front.webp" alt="Axolotl facing the camera">
+            <div class="caption">Axolotl, front-facing</div>
           </div>
-          <div class="photo" style="background:linear-gradient(135deg, #7fe0ab, var(--teal)); min-height:170px;">
-            <div class="caption">Photo: regenerating limb, close-up</div>
+          <div class="photo" style="min-height:170px;">
+            <img src="images/axolotl-swim.jpg" alt="Axolotl swimming">
+            <div class="caption">Axolotl, swimming</div>
           </div>
         </div>
         <div>
@@ -299,45 +278,38 @@
       </div>
     </div>
 
-    <!-- GAMES -->
-    <div class="game-row">
-      <div class="panel game">
-        <span class="tag chip-magenta">Game 1</span>
-        <h3>Word Search</h3>
-        <p class="sub">Click and drag across letters to select a word.</p>
+    <!-- GAME: WORD SEARCH ONLY -->
+    <div class="panel game game-row">
+      <span class="tag chip-magenta">Game</span>
+      <h3>Word Search</h3>
+      <p class="sub">Click and drag across letters to select a word. Words are pulled from this issue.</p>
+      <div class="ws-layout">
         <div class="wordsearch" id="wordsearch"></div>
-        <div class="ws-words" id="wsWords"></div>
-        <div class="ws-status" id="wsStatus">0 of 5 words found</div>
-      </div>
-
-      <div class="panel game">
-        <span class="tag chip-magenta">Game 2</span>
-        <h3>Quick Quiz</h3>
-        <p class="sub">Tap an answer to see if you're right.</p>
-        <div class="quiz-box" id="quizBox"></div>
+        <div>
+          <div class="ws-words" id="wsWords"></div>
+          <div class="ws-status" id="wsStatus">0 of 9 words found</div>
+        </div>
       </div>
     </div>
 
   </div>
 
-  <div class="next-row">
-    <div class="next">
-      <span class="arrow">→</span>
-      <div class="txt"><strong>Next edition</strong>Inside the fight to save coral reefs</div>
-    </div>
-  </div>
 
 </div>
 
 <script>
   // ============ WORD SEARCH ============
-  const WS_SIZE = 10;
+  const WS_SIZE = 14;
   const WS_WORDS = [
-    { word:'OCTOPUS', cells:[[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6]] },
-    { word:'AXOLOTL', cells:[[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[3,7]] },
-    { word:'CELL',    cells:[[0,9],[1,9],[2,9],[3,9]] },
-    { word:'GENE',    cells:[[6,0],[6,1],[6,2],[6,3]] },
-    { word:'ATLAS',   cells:[[8,2],[8,3],[8,4],[8,5],[8,6]] }
+    { word:'MAMMOTH',  cells:[[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[1,7]] },
+    { word:'ELEPHANT', cells:[[3,2],[3,3],[3,4],[3,5],[3,6],[3,7],[3,8],[3,9]] },
+    { word:'OCTOPUS',  cells:[[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6]] },
+    { word:'AXOLOTL',  cells:[[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9]] },
+    { word:'SKELETON', cells:[[9,1],[9,2],[9,3],[9,4],[9,5],[9,6],[9,7],[9,8]] },
+    { word:'GENE',     cells:[[11,5],[11,6],[11,7],[11,8]] },
+    { word:'SHARK',    cells:[[0,12],[1,12],[2,12],[3,12],[4,12]] },
+    { word:'SNAIL',    cells:[[2,13],[3,13],[4,13],[5,13],[6,13]] },
+    { word:'DNA',      cells:[[0,0],[1,0],[2,0]] }
   ];
 
   const wsGrid = Array.from({length:WS_SIZE}, () => Array(WS_SIZE).fill(''));
@@ -398,7 +370,7 @@
       const step = r2>=r1?1:-1;
       for (let r=r1;r!==r2+step;r+=step) path.push([r,c1]);
     } else {
-      return null; // only straight lines supported
+      return null;
     }
     return path;
   }
@@ -453,7 +425,7 @@
       wordChipEls[match].classList.add('done');
       foundCount++;
       wsStatus.textContent = foundCount === WS_WORDS.length
-        ? "All 5 words found! 🎉"
+        ? "All " + WS_WORDS.length + " words found! 🎉"
         : foundCount + ' of ' + WS_WORDS.length + ' words found';
     } else {
       clearTemp();
@@ -468,99 +440,6 @@
   wsContainer.addEventListener('touchstart', e => { beginSelect(cellFromEvent(e)); e.preventDefault(); }, {passive:false});
   wsContainer.addEventListener('touchmove', e => { updateSelect(cellFromEvent(e)); e.preventDefault(); }, {passive:false});
   wsContainer.addEventListener('touchend', endSelect);
-
-  // ============ QUIZ ============
-  const QUIZ = [
-    {
-      q: "Which lake system is the axolotl's only wild habitat?",
-      options: ["Lake Baikal", "Lake Xochimilco", "Lake Titicaca", "Lake Malawi"],
-      correct: 1
-    },
-    {
-      q: "What technique lets scientists sort cells into precise types for the Human Cell Atlas?",
-      options: ["MRI scanning", "X-ray crystallography", "Single-cell sequencing", "PCR alone"],
-      correct: 2
-    },
-    {
-      q: "How many hearts does an octopus have?",
-      options: ["1", "2", "3", "4"],
-      correct: 2
-    },
-    {
-      q: "What structures let an octopus change color almost instantly?",
-      options: ["Chromatophores", "Chloroplasts", "Melanocytes only", "Scales"],
-      correct: 0
-    }
-  ];
-
-  let qIndex = 0, score = 0;
-  const quizBox = document.getElementById('quizBox');
-
-  function renderQuestion(){
-    const item = QUIZ[qIndex];
-    quizBox.innerHTML = '';
-
-    const progress = document.createElement('div');
-    progress.className = 'quiz-progress';
-    progress.textContent = 'Question ' + (qIndex+1) + ' of ' + QUIZ.length;
-    quizBox.appendChild(progress);
-
-    const q = document.createElement('p');
-    q.className = 'quiz-q';
-    q.textContent = item.q;
-    quizBox.appendChild(q);
-
-    const optsWrap = document.createElement('div');
-    item.options.forEach((opt, i) => {
-      const btn = document.createElement('button');
-      btn.className = 'quiz-opt';
-      btn.textContent = opt;
-      btn.addEventListener('click', () => {
-        const buttons = optsWrap.querySelectorAll('.quiz-opt');
-        buttons.forEach(b => b.disabled = true);
-        if (i === item.correct){
-          btn.classList.add('correct');
-          score++;
-        } else {
-          btn.classList.add('wrong');
-          buttons[item.correct].classList.add('correct');
-        }
-        showNext();
-      });
-      optsWrap.appendChild(btn);
-    });
-    quizBox.appendChild(optsWrap);
-  }
-
-  function showNext(){
-    const btn = document.createElement('button');
-    btn.className = 'quiz-next';
-    btn.textContent = qIndex === QUIZ.length - 1 ? 'See score' : 'Next question';
-    btn.addEventListener('click', () => {
-      qIndex++;
-      if (qIndex < QUIZ.length) renderQuestion();
-      else renderScore();
-    });
-    quizBox.appendChild(btn);
-  }
-
-  function renderScore(){
-    quizBox.innerHTML = '';
-    const wrap = document.createElement('div');
-    wrap.className = 'quiz-score';
-    wrap.innerHTML =
-      '<div class="big">' + score + ' / ' + QUIZ.length + '</div>' +
-      '<p>' + (score === QUIZ.length ? "Perfect score." : "Nice work — read the issue again for the ones you missed.") + '</p>';
-    const retry = document.createElement('button');
-    retry.className = 'quiz-next';
-    retry.style.alignSelf = 'center';
-    retry.textContent = 'Play again';
-    retry.addEventListener('click', () => { qIndex = 0; score = 0; renderQuestion(); });
-    wrap.appendChild(retry);
-    quizBox.appendChild(wrap);
-  }
-
-  renderQuestion();
 </script>
 </body>
 </html>
