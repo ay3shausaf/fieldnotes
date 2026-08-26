@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Bio Brief — Issue 01</title>
+<title>The Bio Brief, Issue 01</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -15,6 +15,14 @@
 
     --indigo:#5b4fe0;
     --indigo-soft:#e7e4fb;
+    --fnblue:#1e3a5f;
+    --fnblue-soft:#dbe6ee;
+    --sapphire:#1e3a8a;
+    --sapphire-soft:#dde4f7;
+    --ruby:#9f1239;
+    --ruby-soft:#fbdce6;
+    --slate:#3c4550;
+    --slate-soft:#dde1e4;
     --coral:#f0455d;
     --coral-soft:#fde3e6;
     --gold:#ffb800;
@@ -50,9 +58,9 @@
     font-family:var(--display); font-weight:700; font-size:clamp(38px,6vw,64px);
     letter-spacing:-0.02em; line-height:1; margin:0;
   }
-  .mast-title span:nth-child(1){ color:var(--indigo); }
-  .mast-title span:nth-child(2){ color:var(--ink); }
-  .mast-title span:nth-child(3){ color:var(--coral); }
+  .mast-title span:nth-child(1){ color:var(--sapphire); }
+  .mast-title span:nth-child(2){ color:var(--ruby); }
+  .mast-title span:nth-child(3){ color:#065f46; }
   .mast-meta{
     font-family:var(--mono); font-size:12px; color:var(--ink-soft);
     text-align:right; line-height:1.6;
@@ -66,10 +74,12 @@
     padding:6px 12px; border-radius:100px; text-transform:uppercase;
   }
   .chip-indigo{ background:var(--indigo-soft); color:var(--indigo); }
+  .chip-fnblue{ background:var(--sapphire-soft); color:var(--sapphire); }
   .chip-coral{ background:var(--coral-soft); color:var(--coral); }
   .chip-gold{ background:var(--gold-soft); color:#8a6300; }
   .chip-emerald{ background:var(--emerald-soft); color:var(--emerald); }
   .chip-magenta{ background:var(--magenta-soft); color:var(--magenta); }
+  .chip-teal{ background:var(--teal-soft); color:var(--teal); }
 
   /* ---------- GRID SYSTEM ---------- */
   .grid{
@@ -105,16 +115,16 @@
   .lead{ grid-column:span 8; }
   .lead h2{
     font-family:var(--display); font-weight:700; font-size:clamp(26px,3vw,36px);
-    line-height:1.08; letter-spacing:-0.01em; margin:0 0 14px;
+    line-height:1.08; letter-spacing:-0.01em; margin:0 0 14px; color:var(--sapphire);
   }
-  .lead p{ font-size:15px; line-height:1.65; color:var(--ink-soft); margin:0 0 14px; }
+  .lead p{ font-size:17px; line-height:1.65; color:var(--ink-soft); margin:0 0 14px; }
   .lead p:last-child{ margin-bottom:0; }
   .lead p strong{ color:var(--ink); }
 
   /* ---------- MISSION ---------- */
-  .mission{ grid-column:span 4; background:var(--indigo); color:#fff; border-color:var(--indigo); display:flex; flex-direction:column; }
+  .mission{ grid-column:span 4; background:var(--slate); color:#fff; border-color:var(--slate); display:flex; flex-direction:column; }
   .mission h2{ font-family:var(--display); font-weight:700; font-size:21px; margin:0 0 12px; line-height:1.2; }
-  .mission p{ font-size:13.5px; line-height:1.6; color:#e4e1fb; margin:0 0 14px; }
+  .mission p{ font-size:15.5px; line-height:1.6; color:#e4e1fb; margin:0 0 14px; }
   .mission .photo{ border-color:#fff; margin-bottom:14px; }
   .mission .photo-row-3{ margin-bottom:14px; }
 
@@ -134,7 +144,7 @@
   .specimen-inner{ display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:center; }
   .specimen h2{ font-family:var(--display); font-weight:700; font-size:24px; margin:0 0 6px; }
   .specimen .latin{ font-family:var(--mono); font-size:12px; color:var(--emerald); margin:0 0 12px; font-style:italic; }
-  .specimen p{ font-size:14.5px; line-height:1.65; color:var(--ink-soft); margin:0 0 10px; }
+  .specimen p{ font-size:16.5px; line-height:1.65; color:var(--ink-soft); margin:0 0 10px; }
 
   /* ---------- GAME (word search only) ---------- */
   .game-row{ grid-column:span 12; }
@@ -192,63 +202,59 @@
   </div>
 
   <div class="mast-strip">
-    <span class="mast-chip chip-indigo">Discovery</span>
-    <span class="mast-chip chip-coral">Mission</span>
+    <span class="mast-chip chip-fnblue">Discovery</span>
+    <span class="mast-chip chip-coral">Ongoing Mission</span>
     <span class="mast-chip chip-gold">Quick Hits</span>
     <span class="mast-chip chip-emerald">Specimen</span>
-    <span class="mast-chip chip-magenta">Game</span>
+    <span class="mast-chip chip-teal">Game</span>
   </div>
 
   <div class="grid">
 
     <!-- LEAD STORY: THE ON SWITCH -->
     <div class="panel lead">
-      <span class="tag chip-indigo">Discovery of the Week</span>
+      <span class="tag chip-fnblue">Discovery of the Week</span>
 
       <div class="photo-row">
         <div class="photo">
           <img src="images/dna.webp" alt="DNA double helix close-up">
-          <div class="caption">DNA double helix</div>
         </div>
         <div class="photo">
           <img src="images/switch.jpeg" alt="A hand switching on a light switch">
-          <div class="caption">The "on switch"</div>
         </div>
       </div>
 
       <h2>Scientists just decoded a hidden "on switch" buried in your DNA</h2>
-      <p>Every gene in your body needs to be "read" before it can do anything — a process called <strong>transcription</strong>, where the cell copies a gene's instructions so they can be built into a protein. But genes don't just start being read from a random point on the DNA strand. There's a specific, precise spot that marks exactly where reading should begin, called the <strong>initiator</strong>. Scientists have known this element existed for decades — they just couldn't crack what its exact DNA code looked like.</p>
+      <p>Every gene in your body needs to be "read" before it can do anything, a process called <strong>transcription</strong>, where the cell copies a gene's instructions so they can be built into a protein. But genes don't just start being read from a random point on the DNA strand. There's a specific, precise spot that marks exactly where reading should begin, called the <strong>initiator</strong>. Scientists have known this element existed for decades, but they just couldn't crack what its exact DNA code looked like.</p>
       <p>A team at the University of California San Diego, led by Professor James Kadonaga and graduate researcher Torrey Rhyne-Carrigg, took a brute-force approach to finally solve it. Instead of guessing at the pattern, they used high-throughput DNA sequencing to test roughly <strong>500,000 different versions</strong> of the initiator sequence, measuring how active each one was at switching a gene on. They then fed all of that data into a machine-learning model and trained it to recognise exactly what makes an initiator sequence work.</p>
-      <p>Once the AI had learned the hidden pattern, the team set it loose on the human genome — and found the initiator sequence sitting in roughly <strong>60% of all human genes</strong>. That's a huge chunk of our genetic code that scientists can now recognise and predict, where before it was essentially invisible.</p>
-      <p>Why it matters: a lot of diseases are caused by mutations that land not in a gene itself, but in the regulatory "switch" that controls it — meaning the gene's instructions are perfectly fine, but it never gets properly turned on. With the initiator's code finally decoded, researchers can start predicting exactly what a mutation in that tiny switch region will do to a gene's activity, which could help explain — and eventually treat — a wide range of genetic disorders and cancers.</p>
+      <p>Once the AI had learned the hidden pattern, the team set it loose on the human genome, and found the initiator sequence sitting in roughly <strong>60% of all human genes</strong>. That's a huge chunk of our genetic code that scientists can now recognise and predict, where before it was essentially invisible.</p>
+      <p>Why it matters is that a lot of diseases are caused by mutations that land not in a gene itself, but in the regulatory "switch" that controls it, meaning the gene's instructions are perfectly fine, but it never gets properly turned on. With the initiator's code finally decoded, researchers can start predicting exactly what a mutation in that tiny switch region will do to a gene's activity, which could help explain and eventually treat a wide range of genetic disorders and cancers.</p>
     </div>
 
     <!-- MISSION: WOOLLY MAMMOTH -->
     <div class="panel mission">
-      <span class="tag" style="background:rgba(255,255,255,0.18); color:#fff;">The Mission</span>
+      <span class="tag" style="background:rgba(255,255,255,0.18); color:#fff;">The Ongoing Mission</span>
 
       <div class="photo-row-3">
         <div class="photo" style="min-height:120px;">
           <img src="images/elephant.jpg" alt="Asian elephant in a forest clearing">
-          <div class="caption">Asian elephant</div>
         </div>
         <div class="photo" style="min-height:120px;">
           <img src="images/mammoth.jpg" alt="Woolly mammoths walking through a snowy valley">
-          <div class="caption">Woolly mammoth</div>
         </div>
       </div>
 
       <h2>Bringing the woolly mammoth back from extinction</h2>
-      <p>A Dallas biotech company called <strong>Colossal Biosciences</strong> is trying to recreate a functional woolly mammoth — extinct for roughly 4,000 years — by comparing its full genome against its closest living relative, the Asian elephant, and using CRISPR gene-editing to insert mammoth traits like shaggy cold-resistant fur, extra fat layers, and cold-adapted blood into elephant cells.</p>
-      <p>The plan is to implant an edited embryo into an elephant surrogate, which would carry it through a 22-month pregnancy. As proof of concept, the team already created "woolly mice" — ordinary lab mice carrying spliced-in mammoth fur genes — specifically to test whether those genes actually produce cold tolerance before attempting anything in an elephant.</p>
-      <p>The original target was a mammoth calf by 2028. That's now slipped to "early 2030s." There's also real scientific debate about what the end result even is: Colossal's own chief scientist has admitted a mammoth calf would technically be a heavily gene-edited elephant carrying mammoth traits, not a literal resurrected mammoth. The ecological case, though, is bigger than nostalgia — reintroducing mammoth-like grazers to the Arctic is meant to help trample snow, keep permafrost frozen, and slow the release of greenhouse gases as tundra thaws.</p>
+      <p>A Dallas biotech company called <strong>Colossal Biosciences</strong> is trying to recreate a functional woolly mammoth, extinct for roughly 4,000 years, by comparing its full genome against its closest living relative, the Asian elephant, and using CRISPR gene-editing to insert mammoth traits like shaggy cold-resistant fur, extra fat layers, and cold-adapted blood into elephant cells.</p>
+      <p>The plan is to implant an edited embryo into an elephant surrogate, which would carry it through a 22-month pregnancy. As proof of concept, the team already created "woolly mice," ordinary lab mice carrying spliced-in mammoth fur genes, specifically to test whether those genes actually produce cold tolerance before attempting anything in an elephant.</p>
+      <p>The original target was a mammoth calf by 2028. That's now slipped to "early 2030s." There's also real scientific debate about what the end result even is. Colossal's own chief scientist has admitted a mammoth calf would technically be a heavily gene-edited elephant carrying mammoth traits, not a literal resurrected mammoth. The ecological case, though, is bigger than nostalgia. Reintroducing mammoth-like grazers to the Arctic is meant to help trample snow, keep permafrost frozen, and slow the release of greenhouse gases as tundra thaws.</p>
     </div>
 
     <!-- QUICK HITS -->
     <div class="quick-hits">
-      <div class="hit"><span class="hit-label">Fact 01</span><p>Octopuses have three hearts — two pump blood to the gills, and one pumps it to the rest of the body.</p></div>
+      <div class="hit"><span class="hit-label">Fact 01</span><p>Octopuses have three hearts. Two pump blood to the gills, and one pumps it to the rest of the body.</p></div>
       <div class="hit"><span class="hit-label">Fact 02</span><p>Humans share about 60% of their genes with bananas.</p></div>
-      <div class="hit"><span class="hit-label">Fact 03</span><p>Sharks are older than trees — they've existed for roughly 450 million years.</p></div>
+      <div class="hit"><span class="hit-label">Fact 03</span><p>Sharks are older than trees. They've existed for roughly 450 million years.</p></div>
       <div class="hit"><span class="hit-label">Fact 04</span><p>It takes about 10 years for your entire skeleton to fully rebuild itself.</p></div>
       <div class="hit"><span class="hit-label">Fact 05</span><p>Some snails can seal themselves inside their shell and sleep for years at a time.</p></div>
     </div>
@@ -260,18 +266,16 @@
         <div class="photo-row-3">
           <div class="photo" style="min-height:170px;">
             <img src="images/axolotl-front.webp" alt="Axolotl facing the camera">
-            <div class="caption">Axolotl</div>
           </div>
           <div class="photo" style="min-height:220px; background:#0c1c14;">
             <img src="images/axolotl-swim.jpg" alt="Axolotl swimming" style="object-fit:contain; object-position:center;">
-            <div class="caption">Regenerating limb</div>
           </div>
         </div>
         <div>
           <h2>Axolotl</h2>
           <p class="latin">Ambystoma mexicanum</p>
-          <p>A salamander that never grows up — it keeps its juvenile gills and stays aquatic for its entire life instead of developing lungs like most amphibians, a trait called neoteny.</p>
-          <p>Its most famous ability is regeneration: an axolotl can regrow an entire lost limb, complete with bone, muscle, and nerves, over the course of a few weeks — and can also regenerate parts of its heart, spinal cord, and even brain tissue with minimal scarring.</p>
+          <p>A salamander that never grows up. It keeps its juvenile gills and stays aquatic for its entire life instead of developing lungs like most amphibians, a trait called neoteny.</p>
+          <p>Its most famous ability is regeneration. An axolotl can regrow an entire lost limb, complete with bone, muscle, and nerves, over the course of a few weeks, and can also regenerate parts of its heart, spinal cord, and even brain tissue with minimal scarring.</p>
           <p>It's critically endangered in the wild, surviving naturally only in the canal system of Lake Xochimilco near Mexico City, even though it's one of the most widely studied animals in regeneration research worldwide.</p>
         </div>
       </div>
@@ -279,14 +283,14 @@
 
     <!-- GAME: WORD SEARCH ONLY -->
     <div class="panel game game-row">
-      <span class="tag chip-magenta">Game</span>
+      <span class="tag chip-teal">Game</span>
       <h3>Word Search</h3>
       <p class="sub">Click and drag across letters to select a word. Words are pulled from this issue.</p>
       <div class="ws-layout">
         <div class="wordsearch" id="wordsearch"></div>
         <div>
           <div class="ws-words" id="wsWords"></div>
-          <div class="ws-status" id="wsStatus">0 of 9 words found</div>
+          <div class="ws-status" id="wsStatus">0 of 12 words found</div>
         </div>
       </div>
     </div>
@@ -299,31 +303,38 @@
 <script>
   // ============ WORD SEARCH ============
   const WS_SIZE = 14;
+  const WS_GRID_ROWS = [
+    "OHZELEPHANTLLA",
+    "NDLTOLOXABIYWS",
+    "ROVGQMUEKSLCKC",
+    "OQIUBKAMYFCEFJ",
+    "TPBTREAMGSLUIF",
+    "ANDAPMPJMEZGEB",
+    "IGHEYICXTOKXLO",
+    "TSEJGGROBSTNDS",
+    "IJPNWGNCUDPHNG",
+    "NFETETTPSPEWOA",
+    "IIJQDTONNNDGTN",
+    "JSRCBTAAIKAAED",
+    "UPBQCITCTPSRSR",
+    "ZSZOLIHGKKEOTE"
+  ];
   const WS_WORDS = [
-    { word:'MAMMOTH',  cells:[[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[1,7]] },
-    { word:'ELEPHANT', cells:[[3,2],[3,3],[3,4],[3,5],[3,6],[3,7],[3,8],[3,9]] },
-    { word:'OCTOPUS',  cells:[[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6]] },
-    { word:'AXOLOTL',  cells:[[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9]] },
-    { word:'SKELETON', cells:[[9,1],[9,2],[9,3],[9,4],[9,5],[9,6],[9,7],[9,8]] },
-    { word:'GENE',     cells:[[11,5],[11,6],[11,7],[11,8]] },
-    { word:'SHARK',    cells:[[0,12],[1,12],[2,12],[3,12],[4,12]] },
-    { word:'SNAIL',    cells:[[2,13],[3,13],[4,13],[5,13],[6,13]] },
-    { word:'DNA',      cells:[[0,0],[1,0],[2,0]] }
+    { word:'INITIATOR',     cells:[[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],[8,0],[9,0],[10,0]] },
+    { word:'TRANSCRIPTION', cells:[[1,0],[2,1],[3,2],[4,3],[5,4],[6,5],[7,6],[8,7],[9,8],[10,9],[11,10],[12,11],[13,12]] },
+    { word:'FIELDNOTES',    cells:[[3,12],[4,12],[5,12],[6,12],[7,12],[8,12],[9,12],[10,12],[11,12],[12,12]] },
+    { word:'ELEPHANT',      cells:[[0,3],[0,4],[0,5],[0,6],[0,7],[0,8],[0,9],[0,10]] },
+    { word:'SKELETON',      cells:[[1,13],[2,12],[3,11],[4,10],[5,9],[6,8],[7,7],[8,6]] },
+    { word:'MAMMOTH',       cells:[[2,5],[3,6],[4,7],[5,8],[6,9],[7,10],[8,11]] },
+    { word:'AXOLOTL',       cells:[[1,2],[1,3],[1,4],[1,5],[1,6],[1,7],[1,8]] },
+    { word:'OCTOPUS',       cells:[[7,9],[8,8],[9,7],[10,6],[11,5],[12,4],[13,3]] },
+    { word:'SHARK',         cells:[[3,5],[4,4],[5,3],[6,2],[7,1]] },
+    { word:'SNAIL',         cells:[[9,8],[10,7],[11,6],[12,5],[13,4]] },
+    { word:'GENE',          cells:[[6,1],[7,2],[8,3],[9,4]] },
+    { word:'DNA',           cells:[[5,0],[5,1],[5,2]] }
   ];
 
-  const wsGrid = Array.from({length:WS_SIZE}, () => Array(WS_SIZE).fill(''));
-  WS_WORDS.forEach(w => {
-    w.word.split('').forEach((ch,i) => {
-      const [r,c] = w.cells[i];
-      wsGrid[r][c] = ch;
-    });
-  });
-  const FILL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  for (let r=0;r<WS_SIZE;r++){
-    for (let c=0;c<WS_SIZE;c++){
-      if (!wsGrid[r][c]) wsGrid[r][c] = FILL[Math.floor(Math.random()*FILL.length)];
-    }
-  }
+  const wsGrid = WS_GRID_ROWS.map(row => row.split(''));
 
   const wsContainer = document.getElementById('wordsearch');
   const cellEls = {};
@@ -361,15 +372,16 @@
     tempPath = [];
   }
   function pathBetween(r1,c1,r2,c2){
+    const dr = r2 - r1, dc = c2 - c1;
+    if (dr === 0 && dc === 0) return [[r1,c1]];
+    const isStraight = (dr === 0) || (dc === 0) || (Math.abs(dr) === Math.abs(dc));
+    if (!isStraight) return null;
+    const steps = Math.max(Math.abs(dr), Math.abs(dc));
+    const stepR = dr === 0 ? 0 : dr / Math.abs(dr);
+    const stepC = dc === 0 ? 0 : dc / Math.abs(dc);
     const path = [];
-    if (r1===r2){
-      const step = c2>=c1?1:-1;
-      for (let c=c1;c!==c2+step;c+=step) path.push([r1,c]);
-    } else if (c1===c2){
-      const step = r2>=r1?1:-1;
-      for (let r=r1;r!==r2+step;r+=step) path.push([r,c1]);
-    } else {
-      return null;
+    for (let i = 0; i <= steps; i++){
+      path.push([r1 + stepR * i, c1 + stepC * i]);
     }
     return path;
   }
