@@ -366,7 +366,7 @@
       <div class="wrap hero">
         <div class="eyebrow">Launching September</div>
         <h1 class="hero-title">A newspaper for the <em>discoveries</em> biology makes this week.</h1>
-        <p class="hero-sub">One issue, every week. A lead discovery, a mission worth tracking, a specimen up close and a handful of quick facts, and two games to test what stuck.</p>
+        <p class="hero-sub">One issue, every week. A lead discovery, a mission worth tracking, a specimen up close and a handful of quick facts, and a game to test what stuck.</p>
         <div class="hero-actions">
           <a class="cta-btn" href="the-bio-brief-issue-01.html">Read Issue No. 1</a>
           <button class="cta-btn ghost" id="heroSubscribeBtn">Get the soft copy weekly</button>
@@ -377,7 +377,7 @@
       <div class="wrap anatomy">
         <div class="section-head">
           <h2>What's inside an issue</h2>
-          <span class="tag">Six sections, every week</span>
+          <span class="tag">Six things, every week</span>
         </div>
         <div class="specimen-grid">
           <div class="specimen-card">
@@ -402,20 +402,20 @@
           </div>
           <div class="specimen-card">
             <span class="num">05 &middot; Play</span>
-            <h3>Two Games</h3>
-            <p>Word search, quiz, or word game, a new pair each week, built from the issue's content.</p>
+            <h3>One Game</h3>
+            <p>A word search built from that week's issue, click and drag to solve it right on the site.</p>
           </div>
           <div class="specimen-card">
-            <span class="num">06 &middot; Corner</span>
-            <h3>Next Edition</h3>
-            <p>A teaser for what's coming, tucked in the bottom right of every issue.</p>
+            <span class="num">06 &middot; Visual</span>
+            <h3>Real Photography</h3>
+            <p>Every story runs with real photos, not stock filler, so you can actually see what's being discussed.</p>
           </div>
         </div>
       </div>
 
       <div class="wrap about-strip">
         <p class="lede">Biology doesn't stop moving between textbook chapters. Field Notes is the weekly record of what's happening while the field keeps working.</p>
-        <p class="body-text">Every Friday, one issue lands, short enough to read over breakfast, specific enough to teach you something you didn't know Thursday. No account needed to read it on the site, drop your email if you'd rather it arrive in your inbox.</p>
+        <p class="body-text">Weekly, one issue lands, short enough to read over breakfast, specific enough to teach you something new. No account needed to read it on the site, drop your email if you'd rather it arrive in your inbox.</p>
       </div>
 
       <footer>
@@ -535,12 +535,12 @@
     });
   }
 
-  // ---------- Countdown to September 1 ----------
+  // ---------- Countdown to September 3 ----------
   function launchTarget(){
     const now = new Date();
     let year = now.getFullYear();
-    let target = new Date(year, 8, 1); // Sept 1
-    if (now > target) target = new Date(year + 1, 8, 1);
+    let target = new Date(year, 8, 3); // Sept 3
+    if (now > target) target = new Date(year + 1, 8, 3);
     return target;
   }
   function tickCountdown(){
