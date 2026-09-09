@@ -214,6 +214,49 @@
   }
   .about-strip .body-text{ font-size:16px; line-height:1.7; color:var(--ink-soft); }
 
+  /* ---------- WHO'S BEHIND THIS ---------- */
+  @font-face{ font-family:'Baloo 2'; font-weight:700; src:url('fonts/baloo2-700.woff2') format('woff2'); }
+  @font-face{ font-family:'Baloo 2'; font-weight:800; src:url('fonts/baloo2-800.woff2') format('woff2'); }
+
+  .behind-section{ padding:50px 0 70px; background:var(--cyan); }
+  .behind-heading{
+    font-family:'Baloo 2', sans-serif; font-weight:800; font-size:clamp(30px,4.5vw,48px);
+    text-align:center; color:#fff; -webkit-text-stroke:1.5px var(--ink);
+    margin:0 0 34px; letter-spacing:0.01em;
+  }
+  .behind-cards{ display:grid; grid-template-columns:repeat(2,1fr); gap:28px; max-width:900px; margin:0 auto; }
+  @media (max-width:700px){ .behind-cards{ grid-template-columns:1fr; } }
+  .behind-card{
+    background:#fff; border:3px solid var(--ink); border-radius:14px;
+    padding:14px 14px 26px; text-align:center;
+    box-shadow:8px 8px 0 rgba(27,42,31,0.9);
+  }
+  .behind-photo{
+    width:100%; aspect-ratio:4/5; border-radius:8px; border:3px solid var(--ink);
+    overflow:hidden; margin-bottom:20px; background:var(--cyan-pale);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .behind-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .behind-photo .placeholder-initial{
+    font-family:'Baloo 2', sans-serif; font-weight:800; font-size:64px; color:var(--cyan);
+  }
+  .behind-card h3{
+    font-family:'Baloo 2', sans-serif; font-weight:800; font-size:22px;
+    text-transform:uppercase; margin:0 0 10px; letter-spacing:0.01em;
+  }
+  .behind-role{ display:none; }
+  .behind-card p{ font-size:15px; line-height:1.55; color:var(--ink-soft); margin:0; padding:0 8px; }
+
+  /* ---------- NOTE FROM THE CREATOR ---------- */
+  .creator-note{
+    background:var(--cyan); color:#fff; border-radius:4px; padding:48px 56px;
+    max-width:760px; margin:60px auto 70px;
+  }
+  .creator-note p{ font-size:16px; line-height:1.75; color:rgba(255,255,255,0.92); margin:0 0 18px; }
+  .creator-signoff{ margin-bottom:6px !important; }
+  .creator-names{ font-family:var(--display); font-weight:600; font-style:italic; font-size:20px; color:#fff; margin:0; }
+  @media (max-width:600px){ .creator-note{ padding:36px 26px; } }
+
   footer{
     border-top:1px solid var(--line); padding:34px 0; margin-top:40px;
   }
@@ -267,6 +310,16 @@
   .info-card .k{ font-family:var(--mono); font-size:10px; letter-spacing:0.1em; color:var(--cyan); text-transform:uppercase; }
   .info-card h3{ font-family:var(--display); font-size:20px; font-weight:600; margin:10px 0 10px; }
   .info-card p{ font-size:14.5px; line-height:1.65; color:var(--ink-soft); margin:0; }
+
+  .founders-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); margin:34px 0 80px;
+  }
+  @media (max-width:800px){ .founders-grid{ grid-template-columns:1fr; } }
+  .founder-card{ background:var(--paper); padding:40px 32px; }
+  .founder-name{ font-family:var(--display); font-size:26px; font-weight:600; letter-spacing:-0.01em; }
+  .founder-role{ font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--cyan); margin:8px 0 14px; }
+  .founder-card p{ font-size:15px; line-height:1.6; color:var(--ink-soft); margin:0; }
 
   /* ---------- MODAL ---------- */
   .modal-veil{
@@ -418,6 +471,38 @@
         <p class="body-text">Weekly, one issue lands, short enough to read over breakfast, specific enough to teach you something new. No account needed to read it on the site, drop your email if you'd rather it arrive in your inbox.</p>
       </div>
 
+      <!-- WHO'S BEHIND THIS -->
+      <div class="behind-section">
+        <div class="wrap">
+          <h2 class="behind-heading">Who's Behind This?</h2>
+          <div class="behind-cards">
+            <div class="behind-card">
+              <div class="behind-photo"><img src="images2/ayesha-photo.jpg" alt="Ayesha Yousuf"></div>
+              <h3>Ayesha Yousuf</h3>
+              <p>The brains and power behind the designs and finances.</p>
+            </div>
+            <div class="behind-card">
+              <div class="behind-photo"><img src="images2/ushney-photo.jpg" alt="Ushney Khurram"></div>
+              <h3>Ushney Khurram</h3>
+              <p>The research and public outreach behind every issue.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOTE FROM THE CREATOR -->
+      <div class="wrap">
+        <div class="creator-note">
+          <span class="tag" style="background:rgba(255,255,255,0.15); color:#fff;">Note from the Creator</span>
+          <p>These days, biology barely comes up in daily conversation for people our age. Most of what competes for our attention lives on a screen, and the science actually shaping the world around us rarely makes it into that conversation at all.</p>
+          <p>Meanwhile, biology is making new discoveries every single day. A hidden switch in human DNA. A hundred-year-old shark theory rewritten. A way for people who can't speak to talk again, just by thinking. Most people never hear about any of it.</p>
+          <p>We've studied biology since Grade 9, and the question that's always stuck with us is simple: what does biology actually do for people, day to day? Not the textbook version, the version that's happening right now, in real labs, changing real lives.</p>
+          <p>Field Notes exists because we think biology deserves more attention and more regard from students, not less. If one person reads an issue and looks at the world a little differently afterward, that's the whole point.</p>
+          <p class="creator-signoff">With love,</p>
+          <p class="creator-names">Ayesha and Ushney</p>
+        </div>
+      </div>
+
       <footer>
         <div class="wrap foot-row">
           <span>Field Notes, a weekly biology newspaper</span>
@@ -431,20 +516,11 @@
       <div class="wrap archive-hero">
         <div class="eyebrow">Archive</div>
         <h1 class="hero-title" style="font-size:clamp(32px,4.5vw,48px);">Every issue, by date.</h1>
-        <p class="hero-sub" style="margin-bottom:8px;">Nothing's been collected yet — the first specimen goes on the shelf in September. Here's what the shelf will look like.</p>
-        <div class="countdown" id="countdown">
-          <div><span class="n" id="cd-days">--</span><span class="l">Days</span></div>
-          <div><span class="n" id="cd-hours">--</span><span class="l">Hours</span></div>
-          <div><span class="n" id="cd-mins">--</span><span class="l">Mins</span></div>
-        </div>
+        <p class="hero-sub" style="margin-bottom:8px;">Issue No. 01 is out now. New issues land here every week.</p>
       </div>
 
       <div class="wrap drawer">
         <div class="drawer-grid" id="drawerGrid"></div>
-        <div class="empty-note">
-          <p>The archive fills in one issue at a time, starting with Issue No. 01 in September. Want the first one the day it's ready?</p>
-          <button class="cta-btn" data-open-modal>Notify me</button>
-        </div>
       </div>
     </section>
 
@@ -535,34 +611,15 @@
     });
   }
 
-  // ---------- Countdown to September 3 ----------
-  function launchTarget(){
-    const now = new Date();
-    let year = now.getFullYear();
-    let target = new Date(year, 8, 3); // Sept 3
-    if (now > target) target = new Date(year + 1, 8, 3);
-    return target;
-  }
-  function tickCountdown(){
-    const diff = launchTarget() - new Date();
-    const days = Math.max(0, Math.floor(diff / 86400000));
-    const hours = Math.max(0, Math.floor((diff % 86400000) / 3600000));
-    const mins = Math.max(0, Math.floor((diff % 3600000) / 60000));
-    document.getElementById('cd-days').textContent = days;
-    document.getElementById('cd-hours').textContent = hours;
-    document.getElementById('cd-mins').textContent = mins;
-  }
-  tickCountdown();
-  setInterval(tickCountdown, 30000);
-
   // ---------- Archive placeholder slots ----------
   const drawerGrid = document.getElementById('drawerGrid');
+  const readyIssues = { 1: 'the-bio-brief-issue-01.html' };
   for (let i = 1; i <= 8; i++){
-    const isReady = i === 1;
+    const isReady = !!readyIssues[i];
     const slot = document.createElement(isReady ? 'a' : 'div');
     slot.className = 'slot';
     if (isReady){
-      slot.href = 'the-bio-brief-issue-01.html';
+      slot.href = readyIssues[i];
       slot.style.textDecoration = 'none';
       slot.style.cursor = 'pointer';
     }
