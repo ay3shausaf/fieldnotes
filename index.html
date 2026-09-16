@@ -421,7 +421,7 @@
         <h1 class="hero-title">A newspaper for the <em>discoveries</em> biology makes this week.</h1>
         <p class="hero-sub">One issue, every week. A lead discovery, a mission worth tracking, a specimen up close and a handful of quick facts, and a game to test what stuck.</p>
         <div class="hero-actions">
-          <a class="cta-btn" href="the-bio-brief-issue-01.html">Read Issue No. 1</a>
+          <a class="cta-btn" href="the-bio-brief-issue-02.html">Read Issue No. 2</a>
           <button class="cta-btn ghost" id="heroSubscribeBtn">Get the soft copy weekly</button>
           <button class="cta-btn ghost" data-view-link="archive">Preview the archive</button>
         </div>
@@ -516,7 +516,7 @@
       <div class="wrap archive-hero">
         <div class="eyebrow">Archive</div>
         <h1 class="hero-title" style="font-size:clamp(32px,4.5vw,48px);">Every issue, by date.</h1>
-        <p class="hero-sub" style="margin-bottom:8px;">Issue No. 01 is out now. New issues land here every week.</p>
+        <p class="hero-sub" style="margin-bottom:8px;">Issue No. 02 is out now. New issues land here every week.</p>
       </div>
 
       <div class="wrap drawer">
@@ -613,7 +613,7 @@
 
   // ---------- Archive placeholder slots ----------
   const drawerGrid = document.getElementById('drawerGrid');
-  const readyIssues = { 1: 'the-bio-brief-issue-01.html' };
+  const readyIssues = { 1: 'the-bio-brief-issue-01.html', 2: 'the-bio-brief-issue-02.html' };
   for (let i = 1; i <= 8; i++){
     const isReady = !!readyIssues[i];
     const slot = document.createElement(isReady ? 'a' : 'div');

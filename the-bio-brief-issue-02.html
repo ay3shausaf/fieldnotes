@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Bio Brief, Issue 02</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f7f7f2;
+    --ink:#14161a;
+    --ink-soft:#4a4d54;
+
+    --indigo:#5b4fe0;
+    --indigo-soft:#e7e4fb;
+    --fnblue:#1e3a5f;
+    --fnblue-soft:#dbe6ee;
+    --sapphire:#1e3a8a;
+    --sapphire-soft:#dde4f7;
+    --ruby:#9f1239;
+    --ruby-soft:#fbdce6;
+    --slate:#3c4550;
+    --slate-soft:#dde1e4;
+    --coral:#f0455d;
+    --coral-soft:#fde3e6;
+    --gold:#ffb800;
+    --gold-soft:#fff2cf;
+    --emerald:#1faa59;
+    --emerald-soft:#dcf3e5;
+    --magenta:#d6336c;
+    --magenta-soft:#fbdeea;
+    --teal:#0891b2;
+    --teal-soft:#dcf1f5;
+
+    --display:'Space Grotesk', sans-serif;
+    --body:'Inter', sans-serif;
+    --mono:'IBM Plex Mono', monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ max-width:100%; overflow-x:hidden; }
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--body); -webkit-font-smoothing:antialiased;
+    -webkit-user-select:none; user-select:none;
+  }
+  .page{ max-width:1160px; margin:0 auto; padding:26px 26px 60px; }
+
+  /* ---------- MASTHEAD ---------- */
+  .masthead{
+    display:flex; align-items:flex-end; justify-content:space-between;
+    border-bottom:4px solid var(--ink); padding-bottom:16px; margin-bottom:6px;
+    flex-wrap:wrap; gap:14px;
+  }
+  .mast-title{
+    font-family:var(--display); font-weight:700; font-size:clamp(38px,6vw,64px);
+    letter-spacing:-0.02em; line-height:1; margin:0;
+  }
+  .mast-title span:nth-child(1){ color:var(--sapphire); }
+  .mast-title span:nth-child(2){ color:var(--ruby); }
+  .mast-title span:nth-child(3){ color:#065f46; }
+  .mast-meta{
+    font-family:var(--mono); font-size:12px; color:var(--ink-soft);
+    text-align:right; line-height:1.6;
+  }
+  .mast-meta strong{ color:var(--ink); }
+  .mast-strip{
+    display:flex; gap:10px; flex-wrap:wrap; margin:14px 0 30px;
+  }
+  .mast-chip{
+    font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:0.04em;
+    padding:6px 12px; border-radius:100px; text-transform:uppercase;
+  }
+  .chip-indigo{ background:var(--indigo-soft); color:var(--indigo); }
+  .chip-fnblue{ background:var(--sapphire-soft); color:var(--sapphire); }
+  .chip-coral{ background:var(--coral-soft); color:var(--coral); }
+  .chip-gold{ background:var(--gold-soft); color:#8a6300; }
+  .chip-emerald{ background:var(--emerald-soft); color:var(--emerald); }
+  .chip-magenta{ background:var(--magenta-soft); color:var(--magenta); }
+  .chip-teal{ background:var(--teal-soft); color:var(--teal); }
+
+  /* ---------- GRID SYSTEM ---------- */
+  .grid{
+    display:grid; grid-template-columns:repeat(12,1fr); gap:16px; align-items:stretch;
+  }
+  .panel{
+    border:2.5px solid var(--ink); border-radius:14px; background:#fff;
+    padding:22px; position:relative; overflow:hidden;
+  }
+  .tag{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:0.06em;
+    text-transform:uppercase; padding:5px 10px; border-radius:100px; margin-bottom:14px;
+  }
+
+  /* photo placeholder block */
+  .photo{
+    border-radius:10px; border:2px solid var(--ink);
+    display:flex; align-items:flex-end; position:relative;
+    min-height:150px; overflow:hidden; background:var(--paper);
+  }
+  .photo img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;
+  }
+  .photo .caption{
+    position:relative; z-index:1; font-family:var(--mono); font-size:10.5px;
+    color:#fff; padding:9px 11px; background:rgba(20,22,26,0.55); width:100%;
+  }
+  .photo-row{ display:grid; grid-template-columns:1.4fr 1fr; gap:12px; margin-bottom:18px; }
+  .photo-row-3{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px; }
+
+  /* ---------- LEAD STORY ---------- */
+  .lead{ grid-column:span 8; }
+  .lead h2{
+    font-family:var(--display); font-weight:700; font-size:clamp(26px,3vw,36px);
+    line-height:1.08; letter-spacing:-0.01em; margin:0 0 14px; color:var(--sapphire);
+  }
+  .lead p{ font-size:17px; line-height:1.65; color:var(--ink-soft); margin:0 0 14px; }
+  .lead p:last-child{ margin-bottom:0; }
+  .lead p strong{ color:var(--ink); }
+
+  /* ---------- MISSION ---------- */
+  .mission{ grid-column:span 4; background:var(--slate); color:#fff; border-color:var(--slate); display:flex; flex-direction:column; }
+  .mission h2{ font-family:var(--display); font-weight:700; font-size:21px; margin:0 0 12px; line-height:1.2; }
+  .mission p{ font-size:15.5px; line-height:1.6; color:#e4e1fb; margin:0 0 14px; }
+  .mission .photo{ border-color:#fff; margin-bottom:14px; }
+  .mission .photo-row-3{ margin-bottom:14px; }
+
+  /* ---------- QUICK HITS ---------- */
+  .quick-hits{ grid-column:span 12; display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+  .hit{ border:2px solid var(--ink); border-radius:12px; padding:16px; display:flex; flex-direction:column; }
+  .hit .hit-label{ font-family:var(--mono); font-weight:600; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px; }
+  .hit p{ font-family:var(--body); font-size:13.5px; font-weight:500; line-height:1.5; margin:0; color:var(--ink); }
+  .hit:nth-child(1){ background:var(--gold-soft); }
+  .hit:nth-child(2){ background:var(--emerald-soft); }
+  .hit:nth-child(3){ background:var(--magenta-soft); }
+  .hit:nth-child(4){ background:var(--teal-soft); }
+  .hit:nth-child(5){ background:var(--coral-soft); }
+
+  /* ---------- SPECIMEN ---------- */
+  .specimen{ grid-column:span 12; }
+  .specimen-inner{ display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:center; }
+  .specimen h2{ font-family:var(--display); font-weight:700; font-size:24px; margin:0 0 6px; }
+  .specimen .latin{ font-family:var(--mono); font-size:12px; color:var(--emerald); margin:0 0 12px; font-style:italic; }
+  .specimen p{ font-size:16.5px; line-height:1.65; color:var(--ink-soft); margin:0 0 10px; }
+
+  /* ---------- GAME (word search only) ---------- */
+  .game-row{ grid-column:span 12; }
+  .game h3{ font-family:var(--display); font-weight:700; font-size:20px; margin:0 0 4px; }
+  .game .sub{ font-family:var(--mono); font-size:11.5px; color:var(--ink-soft); margin:0 0 18px; }
+
+  .cw-layout{ display:grid; grid-template-columns:auto 1fr; gap:36px; align-items:start; }
+  .cw-grid{ position:relative; flex-shrink:0; }
+  .cw-cell{
+    position:absolute; width:30px; height:30px;
+    border:1.5px solid var(--ink); background:#fff; border-radius:2px;
+    transition:background 0.2s ease;
+  }
+  .cw-cell.correct{ background:var(--emerald-soft); }
+  .cw-cell.incorrect{ background:var(--coral-soft); }
+  .cw-cell input{
+    width:100%; height:100%; border:none; outline:none; background:transparent;
+    text-align:center; font-family:var(--mono); font-weight:700; font-size:15px;
+    color:var(--ink); text-transform:uppercase; padding:0;
+  }
+  .cw-num{
+    position:absolute; top:1px; left:2px; font-size:7.5px; font-family:var(--mono);
+    color:var(--ink-soft); pointer-events:none; line-height:1;
+  }
+  .cw-clue-panel{ display:flex; flex-direction:column; gap:20px; }
+  .cw-clue-col h4{ font-family:var(--display); font-weight:700; font-size:16px; color:var(--emerald); margin:0 0 10px; }
+  .clue-item{ font-size:13.5px; line-height:1.5; color:var(--ink-soft); margin-bottom:9px; cursor:pointer; }
+  .clue-item:hover{ color:var(--ink); }
+  .clue-item strong{ color:var(--ink); }
+  .cw-check-btn{
+    font-family:var(--mono); font-weight:600; font-size:12px; letter-spacing:0.04em;
+    text-transform:uppercase; background:var(--emerald); color:#fff; border:none;
+    padding:11px 18px; border-radius:100px; cursor:pointer; align-self:flex-start;
+  }
+  .cw-check-btn:hover{ background:#188a49; }
+  .cw-result{ font-family:var(--mono); font-size:12px; color:var(--ink-soft); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .lead{ grid-column:span 12; }
+    .mission{ grid-column:span 12; }
+    .quick-hits{ grid-template-columns:repeat(2,1fr); }
+    .specimen-inner{ grid-template-columns:1fr; }
+    .photo-row{ grid-template-columns:1fr; }
+    .cw-layout{ grid-template-columns:1fr; overflow-x:auto; }
+  }
+  @media (max-width:560px){
+    .page{ padding:20px 18px 50px; }
+    .quick-hits{ grid-template-columns:1fr 1fr; }
+    .mast-meta{ text-align:left; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="masthead">
+    <h1 class="mast-title"><span>THE</span> <span>BIO</span> <span>BRIEF</span></h1>
+    <div class="mast-meta">
+      <div><strong>Issue No. 2</strong></div>
+    </div>
+  </div>
+
+  <div class="mast-strip">
+    <span class="mast-chip chip-fnblue">Discovery</span>
+    <span class="mast-chip chip-coral">Ongoing Mission</span>
+    <span class="mast-chip chip-gold">Quick Hits</span>
+    <span class="mast-chip chip-emerald">Specimen</span>
+    <span class="mast-chip chip-teal">Game</span>
+  </div>
+
+  <div class="grid">
+
+    <!-- LEAD STORY: BONNETHEAD SHARK DISCOVERY -->
+    <div class="panel lead">
+      <span class="tag chip-fnblue">Discovery of the Week</span>
+
+      <div class="photo-row">
+        <div class="photo">
+          <img src="images2/lead1.jpeg" alt="Bonnethead shark, side profile">
+        </div>
+        <div class="photo">
+          <img src="images2/lead2.jpg" alt="Bonnethead shark head, close-up">
+        </div>
+      </div>
+
+      <h2>A hundred-year-old theory about hammerhead sharks just got flipped</h2>
+      <p>Bonnethead sharks are the only shark species where males and females have a clearly different head shape, males end up with a pointed snout, females a rounder one. For decades, the accepted explanation was simple, a male's head sharpens into a point specifically once it reaches sexual maturity, a straightforward hormone-driven signal of adulthood.</p>
+      <p>A team led by the University of Miami's Rosenstiel School set out to actually test that assumption with real data, something nobody had done before. They sampled 144 bonnethead sharks across two bays in Florida, measuring head shape and diet in the very same individual animals rather than stitching together separate datasets collected at different times.</p>
+      <p>The results ran backwards from the textbook version. Both male and female bonnetheads actually start out with pointier heads as juveniles, and heads get rounder with age, especially in females, the opposite of "males sharpen at maturity." The team also directly ruled out diet as the cause, sharks living in the same bay ate essentially the same food regardless of sex.</p>
+      <p>Why it matters is that bonnetheads are the only documented case of this kind of head-shape difference in any shark species, so they've quietly become a natural test case for how and why male and female animals evolve to look different from each other at all, and the accepted explanation had simply never been properly checked until now.</p>
+    </div>
+
+    <!-- MISSION: THOUGHT TO SPEECH -->
+    <div class="panel mission">
+      <span class="tag" style="background:rgba(255,255,255,0.18); color:#fff;">The Ongoing Mission</span>
+
+      <div class="photo-row-3">
+        <div class="photo" style="min-height:120px;">
+          <img src="images2/mission1.jpg" alt="Brain implant decoding device with output screen">
+        </div>
+        <div class="photo" style="min-height:120px;">
+          <img src="images2/mission2.png" alt="Person using a brain-computer speech device">
+        </div>
+      </div>
+
+      <h2>Turning thought into speech for people who can't talk</h2>
+      <p>The goal is to give people with paralysis, from ALS, stroke, or spinal injury, a way to speak in real time, just by thinking about what they want to say. A tiny array of electrodes is surgically implanted directly onto the part of the brain that controls speech. Even when a person's muscles can no longer follow through, the neurons that would normally coordinate the mouth, tongue, and vocal cords still fire exactly as if they were speaking.</p>
+      <p>A deep-learning system reads that neural activity and decodes it, not word by word, but down to individual phonemes, the small units of sound that make up speech, then instantly rebuilds them into synthesized words in the person's own voice. In 2026, one system reached over 99% accuracy and could turn a thought into audible speech in under a quarter of a second, fast enough to hold a real back-and-forth conversation.</p>
+      <p>One man with ALS is now using a version of this system daily, unsupervised, at home rather than in a lab, to talk with his kids and message friends. It's still early. Only a handful of individual patients have used these systems so far, and making the technology work reliably, affordably, and for many different causes of paralysis is the next big hurdle.</p>
+    </div>
+
+    <!-- QUICK HITS -->
+    <div class="quick-hits">
+      <div class="hit"><span class="hit-label">Fact 01</span><p>A group of crows is called a "murder," though nobody's fully sure why.</p></div>
+      <div class="hit"><span class="hit-label">Fact 02</span><p>Octopuses can taste with their entire body, their suckers are packed with chemoreceptors.</p></div>
+      <div class="hit"><span class="hit-label">Fact 03</span><p>A blue whale's heart is roughly the size of a small car, and beats only 8-10 times a minute at the surface.</p></div>
+      <div class="hit"><span class="hit-label">Fact 04</span><p>Elephants are known to return to and gently touch the bones of dead herd members years later.</p></div>
+      <div class="hit"><span class="hit-label">Fact 05</span><p>Your stomach gets an entirely new lining every 3 to 4 days to survive its own acid.</p></div>
+    </div>
+
+    <!-- SPECIMEN -->
+    <div class="panel specimen">
+      <span class="tag chip-emerald">Specimen of the Week</span>
+      <div class="specimen-inner">
+        <div class="photo-row-3">
+          <div class="photo" style="min-height:170px;">
+            <img src="images2/spec1.webp" alt="Bonnethead shark, full body">
+          </div>
+          <div class="photo" style="min-height:220px; background:#0c1c14; display:flex; align-items:center; justify-content:center;">
+            <img src="images2/spec2.jpeg" alt="Bonnethead shark, shovel-shaped head close-up" style="object-fit:contain;">
+          </div>
+        </div>
+        <div>
+          <h2>Bonnethead Shark</h2>
+          <p class="latin">Sphyrna tiburo</p>
+          <p>The smallest member of the hammerhead family, the bonnethead is easy to tell apart from its relatives by its shovel-shaped head, rounder and less dramatically wide than a true hammerhead's.</p>
+          <p>It's one of the only sharks known to regularly eat plants. Bonnetheads graze on seagrass alongside their usual diet of crabs and shrimp, and can actually digest a meaningful portion of it, making them functionally omnivorous, extremely unusual for any shark.</p>
+          <p>They're found in shallow coastal waters throughout the western Atlantic and Gulf of Mexico, and are currently the only shark species known to show a clear difference in head shape between males and females.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GAME: CROSSWORD -->
+    <div class="panel game game-row">
+      <span class="tag chip-teal">Game</span>
+      <h3>Crossword</h3>
+      <p class="sub">Click a cell and type. Use arrow keys to move, or click a clue to jump to it.</p>
+      <div class="cw-layout">
+        <div class="cw-grid" id="cwGrid"></div>
+        <div class="cw-clue-panel">
+          <div class="cw-clue-col">
+            <h4>Across</h4>
+            <div id="cwAcross"></div>
+          </div>
+          <div class="cw-clue-col">
+            <h4>Down</h4>
+            <div id="cwDown"></div>
+          </div>
+          <button class="cw-check-btn" id="cwCheck">Check answers</button>
+          <div class="cw-result" id="cwResult"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+<script>
+  // ============ CROSSWORD ============
+  const CW_ROWS = [
+    ".........P.....",
+    ".........R.....",
+    "........NEURONS",
+    ".......M.D.....",
+    "......PARALYSIS",
+    ".......T.T.....",
+    "....B..U.O.....",
+    "....O..R.R.....",
+    "....N..I.......",
+    "...SNOUT.......",
+    "C...E..Y.......",
+    "A...T..........",
+    "R..WHALE.......",
+    "T...E..........",
+    "IMPLANT........",
+    "L...D..........",
+    "A..............",
+    "G..............",
+    "E..............",
+  ];
+  const CW_H = CW_ROWS.length, CW_W = CW_ROWS[0].length;
+  const CW_ACROSS = [
+    {n:2, word:'NEURONS', clue:"The brain cells that fire electrical signals, even when the muscles they control can't respond"},
+    {n:4, word:'PARALYSIS', clue:"The loss of the ability to move, which this technology is trying to work around"},
+    {n:6, word:'SNOUT', clue:"The pointed or rounded front of an animal's face"},
+    {n:8, word:'WHALE', clue:"The largest animal ever known to have lived, with a heart the size of a small car"},
+    {n:9, word:'IMPLANT', clue:"A device surgically placed inside the body"},
+  ];
+  const CW_DOWN = [
+    {n:1, word:'PREDATOR', clue:"An animal that hunts other animals for food"},
+    {n:3, word:'MATURITY', clue:"The point at which an animal becomes capable of reproducing"},
+    {n:5, word:'BONNETHEAD', clue:"The only shark species with a clear head-shape difference between males and females"},
+    {n:7, word:'CARTILAGE', clue:"The flexible tissue that makes up a shark's entire skeleton, not bone"},
+  ];
+
+  const CELL = 30; // px
+  const cwGrid = document.getElementById('cwGrid');
+  cwGrid.style.width = (CW_W*CELL)+'px';
+  cwGrid.style.height = (CW_H*CELL)+'px';
+
+  // numbering
+  const cwStarts = {};
+  let cwNum = 1;
+  for (let r=0;r<CW_H;r++){
+    for (let c=0;c<CW_W;c++){
+      if (CW_ROWS[r][c]==='.') continue;
+      const sa = (c===0 || CW_ROWS[r][c-1]==='.') && (c+1<CW_W && CW_ROWS[r][c+1]!=='.');
+      const sd = (r===0 || CW_ROWS[r-1][c]==='.') && (r+1<CW_H && CW_ROWS[r+1][c]!=='.');
+      if (sa || sd) cwStarts[r+','+c] = cwNum++;
+    }
+  }
+
+  const cwInputs = {};
+  for (let r=0;r<CW_H;r++){
+    for (let c=0;c<CW_W;c++){
+      if (CW_ROWS[r][c]==='.') continue;
+      const cell = document.createElement('div');
+      cell.className = 'cw-cell';
+      cell.style.top = (r*CELL)+'px';
+      cell.style.left = (c*CELL)+'px';
+      const key = r+','+c;
+      if (cwStarts[key]){
+        const numEl = document.createElement('span');
+        numEl.className = 'cw-num';
+        numEl.textContent = cwStarts[key];
+        cell.appendChild(numEl);
+      }
+      const input = document.createElement('input');
+      input.maxLength = 1;
+      input.dataset.r = r; input.dataset.c = c;
+      input.autocomplete = 'off';
+      cell.appendChild(input);
+      cwGrid.appendChild(cell);
+      cwInputs[key] = input;
+    }
+  }
+
+  function cwMoveFocus(r,c,dr,dc){
+    let nr=r+dr, nc=c+dc;
+    const key = nr+','+nc;
+    if (cwInputs[key]) cwInputs[key].focus();
+  }
+
+  // determine which cells belong to an across run (length>1) and/or down run (length>1)
+  const cwPartOfAcross = {}, cwPartOfDown = {};
+  for (let r=0;r<CW_H;r++){
+    for (let c=0;c<CW_W;c++){
+      if (CW_ROWS[r][c]==='.') continue;
+      const leftOk = c>0 && CW_ROWS[r][c-1]!=='.';
+      const rightOk = c+1<CW_W && CW_ROWS[r][c+1]!=='.';
+      cwPartOfAcross[r+','+c] = leftOk || rightOk;
+      const upOk = r>0 && CW_ROWS[r-1][c]!=='.';
+      const downOk = r+1<CW_H && CW_ROWS[r+1][c]!=='.';
+      cwPartOfDown[r+','+c] = upOk || downOk;
+    }
+  }
+
+  let cwDir = 'H'; // current typing direction
+
+  Object.keys(cwInputs).forEach(key => {
+    const input = cwInputs[key];
+    const [r,c] = key.split(',').map(Number);
+    input.addEventListener('focus', () => {
+      // pick a sensible default direction for this cell if current dir doesn't apply here
+      if (cwDir === 'H' && !cwPartOfAcross[key] && cwPartOfDown[key]) cwDir = 'V';
+      if (cwDir === 'V' && !cwPartOfDown[key] && cwPartOfAcross[key]) cwDir = 'H';
+    });
+    input.addEventListener('input', () => {
+      input.value = input.value.toUpperCase().replace(/[^A-Z]/g,'');
+      input.parentElement.classList.remove('correct','incorrect');
+      if (input.value){
+        if (cwDir === 'H') cwMoveFocus(r,c,0,1);
+        else cwMoveFocus(r,c,1,0);
+      }
+    });
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); cwDir='H'; cwMoveFocus(r,c,0,1); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); cwDir='H'; cwMoveFocus(r,c,0,-1); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); cwDir='V'; cwMoveFocus(r,c,-1,0); }
+      else if (e.key === 'ArrowDown') { e.preventDefault(); cwDir='V'; cwMoveFocus(r,c,1,0); }
+      else if (e.key === 'Backspace' && !input.value) {
+        if (cwDir === 'H') cwMoveFocus(r,c,0,-1); else cwMoveFocus(r,c,-1,0);
+      }
+    });
+  });
+
+  function cwFocusWord(n, dir){
+    let target = null;
+    for (const key in cwStarts){ if (cwStarts[key]===n){ target = key; break; } }
+    if (!target) return;
+    cwDir = dir;
+    const input = cwInputs[target];
+    if (input) input.focus();
+  }
+
+  const acrossEl = document.getElementById('cwAcross');
+  CW_ACROSS.forEach(item => {
+    const d = document.createElement('div');
+    d.className = 'clue-item';
+    d.innerHTML = `<strong>${item.n}.</strong> ${item.clue}`;
+    d.addEventListener('click', () => cwFocusWord(item.n,'H'));
+    acrossEl.appendChild(d);
+  });
+  const downEl = document.getElementById('cwDown');
+  CW_DOWN.forEach(item => {
+    const d = document.createElement('div');
+    d.className = 'clue-item';
+    d.innerHTML = `<strong>${item.n}.</strong> ${item.clue}`;
+    d.addEventListener('click', () => cwFocusWord(item.n,'V'));
+    downEl.appendChild(d);
+  });
+
+  document.getElementById('cwCheck').addEventListener('click', () => {
+    let correctCount = 0, total = 0;
+    Object.keys(cwInputs).forEach(key => {
+      const [r,c] = key.split(',').map(Number);
+      const input = cwInputs[key];
+      const answer = CW_ROWS[r][c];
+      total++;
+      input.parentElement.classList.remove('correct','incorrect');
+      if (!input.value) return;
+      if (input.value === answer){
+        input.parentElement.classList.add('correct');
+        correctCount++;
+      } else {
+        input.parentElement.classList.add('incorrect');
+      }
+    });
+    document.getElementById('cwResult').textContent = correctCount === total
+      ? "All correct! 🎉"
+      : correctCount + " of " + total + " letters correct so far";
+  });
+</script>
+</body>
+</html>
